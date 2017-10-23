@@ -1,12 +1,11 @@
 body {
    width: 370px;
 }
-
 #header {
+   padding: 10px;
    border-bottom: 1px solid #dedede;
-
+   text-align: center;
    li {
-      margin: 6px;
       display: inline-block;
    }
 }

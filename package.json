@@ -4,7 +4,8 @@
   "description": "An application for routine lifeworks",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "node": "babel-node ./controllers/route.js --presets es2015"
   },
   "author": "Shantti-Y",
   "license": "MIT",
@@ -15,6 +16,7 @@
     "babelify": "^7.3.0",
     "browser-sync": "^2.18.13",
     "browserify": "^14.4.0",
+    "dotenv": "^4.0.0",
     "eslint": "^4.9.0",
     "fs": "^0.0.1-security",
     "gulp": "^3.9.1",

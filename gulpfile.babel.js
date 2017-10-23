@@ -9,26 +9,26 @@ const js_assets = './public/assets/javascripts/'
 const css_assets = './public/assets/stylesheets/'
 const node_server = './controllers/'
 
-let node
+// TODO: nodemonを使い、自動化を検討
+// let node
 gulp.task('server', () => {
-   if(node){
+   /* if(node){
       node.kill()
    }
-   node = spawn('node', ['./controllers/route.js'])
-   console.log(node)
+   node = spawn('babel-node', ['./controllers/route.js'], { presets: 'es2015', stdio: 'inherit' })
    node.on('close', (code) => {
       if(code === 8){
          gulp.log('Error detected, waiting for changes')
       }
-   })
+   }) */
 })
 
 gulp.task('scripts', () => {
    let b = browserify({
       entries: [js_assets + 'app.js']
    })
-
-   b.bundle()
+      b.transform('babelify', { presets: ['es2015'] })
+      .bundle()
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('./public/src/javascripts'))
 })
@@ -40,7 +40,7 @@ gulp.task('styles', () => {
 })
 
 gulp.task('watch', () => {
-   gulp.watch([node_server + '*.js', node_server + 'api_docs/*.js'], ['server'])
+   // gulp.watch([node_server + '*.js', node_server + 'api_docs/*.js'], ['server'])
    gulp.watch(js_assets + '*.js', ['scripts'])
    gulp.watch(css_assets + '*.scss', ['styles'])
 })

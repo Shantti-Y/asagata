@@ -2,7 +2,8 @@ body {
   width: 370px; }
 
 #header {
-  border-bottom: 1px solid #dedede; }
+  padding: 10px;
+  border-bottom: 1px solid #dedede;
+  text-align: center; }
   #header li {
-    margin: 6px;
     display: inline-block; }

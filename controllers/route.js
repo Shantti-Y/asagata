@@ -1,29 +1,35 @@
-const http = require('http')
-const fs = require('fs')
-const { getWeatherReport } = require('./api_docs/weather_reports.js')
-const { getGarbageSchedules } = require('./api_docs/garbage_schedules.js')
+import http from 'http'
+import fs from 'fs'
+import { getWeatherReport } from './api_docs/weather_reports.js'
+import { getGarbageSchedules } from './api_docs/garbage_schedules.js'
+
 const port = 3000
 
 http.createServer( (req, res) => {
    res.setHeader('Access-Control-Allow-Origin', '*')
    res.writeHead(200, { 'Content-Type': 'text/html' })
 
-   let res_msg
-   let req_msg = req.url
-   switch(req_msg){
-      case '/weather':
-         res_msg = getWeatherReport()
-         break
-      case '/garbage':
-         res_msg = getGarbageSchedules()
-         break
-      default:
-         res_msg = 'hello'
-         break
-   }
+   new Promise((resolve, reject) => {
+      switch(req.url){
+         case '/weather':
+            resolve(getWeatherReport)
+            break
+         case '/garbage':
+            resolve(getGarbageSchedules())
+            break
+         default:
+            resolve('hello')
+            break
+      }
+   }).then((value) => {
+      res.write(JSON.stringify(value))
+      res.end()
+   }).catch((err) => {
+      console.log(new Error(err))
+   })
 
-   res.write(JSON.stringify(res_msg))
-   res.end()
+
+
 }).listen(port)
 
 console.log('Server running at port ' + port + '...')
