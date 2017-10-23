@@ -30,7 +30,6 @@ const getWeatherReport = new Promise((resolve, reject) => {
       }
       const xhr_url = OpenWeatherMapURL + '&id=' + searched_data.id
       getAPIData(xhr_url).then((value) => {
-         
          resolve(JSON.parse(value))
       }).catch((msg) => {
          console.log(msg)

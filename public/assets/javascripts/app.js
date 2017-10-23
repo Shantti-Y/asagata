@@ -22,18 +22,24 @@ document.addEventListener('DOMContentLoaded', () => {
                tds[0] = document.createElement('td')
                   tds[0].innerHTML = overall.dt_txt
                tds[1] =  document.createElement('td')
+                  // TODO: iconの取得
                   tds[1].innerHTML = overall.weather[0].description
                tds[2] = document.createElement('td')
+                  // TODO: CとFに切り替える機能と
                   tds[2].innerHTML = overall.main.temp_max
                tds[3] = document.createElement('td')
+                  // TODO: CとFに切り替える機能と
                   tds[3].innerHTML = overall.main.temp_min
                tds[4] = document.createElement('td')
+                  // TODO: CとFに切り替える機能と
                   tds[4].innerHTML = overall.main.temp
                tds[5] = document.createElement('td')
+                  // TODO: CとFに切り替える機能と
                   tds[5].innerHTML = overall.main.humidity
                tds[6] = document.createElement('td')
                   tds[6].innerHTML = overall.rain['3h']
                tds[7] = document.createElement('td')
+                  // TODO: CとFに切り替える機能と
                   tds[7].innerHTML = overall.wind.speed
             for(let j = 0; j < tds.length; j++){
                tr.appendChild(tds[j])
