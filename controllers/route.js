@@ -1,7 +1,7 @@
 import http from 'http'
 import fs from 'fs'
 import { getWeatherReport } from './api_docs/weather_reports.js'
-import { getGarbageSchedules } from './api_docs/garbage_schedules.js'
+import { getBinCalendars } from './api_docs/bin_calendars.js'
 
 const port = 3000
 
@@ -12,10 +12,10 @@ http.createServer( (req, res) => {
    new Promise((resolve, reject) => {
       switch(req.url){
          case '/weather':
-            resolve(getWeatherReport)
+            resolve(getWeatherReport('Shiga-ken'))
             break
          case '/garbage':
-            resolve(getGarbageSchedules())
+            resolve(getBinCalendars('西渋川'))
             break
          default:
             resolve('hello')
@@ -27,8 +27,6 @@ http.createServer( (req, res) => {
    }).catch((err) => {
       console.log(new Error(err))
    })
-
-
 
 }).listen(port)
 

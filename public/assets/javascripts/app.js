@@ -1,5 +1,6 @@
 import { MainURL } from '../../../config/api_urls.js'
 import { getAPIData } from '../../../helpers/promise.js'
+import { area_names } from '../../../helpers/translate.js'
 
 document.addEventListener('DOMContentLoaded', () => {
    let contents = document.getElementsByClassName('content')
@@ -50,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
    }
 
-   const createGarbageTable = () => {
-      let garbage_content = displayContent('garbage')
+   const createBinTable = (data) => {
+      displayContent('garbage', (garbage_content) => {
+         garbage_content.querySelector('p').innerHTML = data
+      })
    }
 
    const setAPIData = (path) => {
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if(path == 'weather'){
                createWeatherTable(parsed_data)
             }else if(path == 'garbage'){
-               createGarbageTable()
+               createBinTable(parsed_data)
             }
          // content.innerHTML = parsed_data
          console.log(parsed_data)

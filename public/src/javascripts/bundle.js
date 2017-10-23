@@ -12,11 +12,12 @@ _dotenv2.default.config();
 
 var MainURL = 'http://dev.shanttiy.com:3000/';
 var OpenWeatherMapURL = 'https://api.openweathermap.org/data/2.5/forecast?appid=' + process.env.OPEN_WEATHER_MAP_API_KEY;
-//
-module.exports = { MainURL: MainURL, OpenWeatherMapURL: OpenWeatherMapURL };
+var BinCalendarSrc = './models/fixtures/jsons/bin_calendars';
+
+module.exports = { MainURL: MainURL, OpenWeatherMapURL: OpenWeatherMapURL, BinCalendarSrc: BinCalendarSrc };
 
 }).call(this,require('_process'))
-},{"_process":16,"dotenv":9}],2:[function(require,module,exports){
+},{"_process":17,"dotenv":10}],2:[function(require,module,exports){
 'use strict';
 
 var _xmlhttprequest = require('xmlhttprequest');
@@ -43,7 +44,62 @@ var getAPIData = function getAPIData(URL) {
 
 module.exports = { getAPIData: getAPIData };
 
-},{"xmlhttprequest":41}],3:[function(require,module,exports){
+},{"xmlhttprequest":42}],3:[function(require,module,exports){
+"use strict";
+
+var area_names = {
+   "北海道": "Hokkaido",
+   "青森県": "Aomori-ken",
+   "岩手県": "Iwate-ken",
+   "宮城県": "Miyagi-ken",
+   "秋田県": "Akita-ken",
+   "山形県": "Yamagata-ken",
+   "福島県": "Fukushima-ken",
+   "茨城県": "Ibaraki-ken",
+   "栃木県": "Tochigi-ken",
+   "群馬県": "Gunma-ken",
+   "埼玉県": "Saitama-ken",
+   "千葉県": "Chiba-ken",
+   "東京都": "Tokyo",
+   "神奈川県": "Kanagawa-ken",
+   "新潟県": "Niigata-ken",
+   "富山県": "Toyama-ken",
+   "石川県": "Ishikawa-ken",
+   "福井県": "Fukui-ken",
+   "山梨県": "Yamanashi-ken",
+   "長野県": "Nagano-ken",
+   "岐阜県": "Gifu-ken",
+   "静岡県": "Shizuoka-ken",
+   "愛知県": "Aichi-ken",
+   "三重県": "Mie-ken",
+   "滋賀県": "Shiga-ken",
+   "京都府": "Kyoto",
+   "大阪府": "Osaka",
+   "兵庫県": "Hyogo-ken",
+   "奈良県": "Nara-ken",
+   "和歌山県": "Wakayama-ken",
+   "鳥取県": "Tottori-ken",
+   "島根県": "Shimane-ken",
+   "岡山県": "Okayama-ken",
+   "広島県": "Hiroshima-ken",
+   "山口県": "Yamaguchi-ken",
+   "徳島県": "Tokushima-ken",
+   "香川県": "Kagawa-ken",
+   "愛媛県": "Ehime-ken",
+   "高知県": "Kochi-ken",
+   "福岡県": "Fukuoka-ken",
+   "佐賀県": "Saga-ken",
+   "長崎県": "Nagasaki-ken",
+   "熊本県": "Kumamoto-ken",
+   "大分県": "Oita-ken",
+   "宮崎県": "Miyazaki-ken",
+   "鹿児島県": "Kagoshima-ken",
+   "沖縄県": "Okinawa-ken"
+};
+
+module.exports = { area_names: area_names };
+
+},{}],4:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -159,11 +215,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],4:[function(require,module,exports){
-
 },{}],5:[function(require,module,exports){
-arguments[4][4][0].apply(exports,arguments)
-},{"dup":4}],6:[function(require,module,exports){
+
+},{}],6:[function(require,module,exports){
+arguments[4][5][0].apply(exports,arguments)
+},{"dup":5}],7:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1879,7 +1935,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":3,"ieee754":12}],7:[function(require,module,exports){
+},{"base64-js":4,"ieee754":13}],8:[function(require,module,exports){
 module.exports = {
   "100": "Continue",
   "101": "Switching Protocols",
@@ -1945,7 +2001,7 @@ module.exports = {
   "511": "Network Authentication Required"
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2056,7 +2112,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":14}],9:[function(require,module,exports){
+},{"../../is-buffer/index.js":15}],10:[function(require,module,exports){
 (function (process){
 'use strict'
 
@@ -2134,7 +2190,7 @@ module.exports.load = config
 module.exports.parse = parse
 
 }).call(this,require('_process'))
-},{"_process":16,"fs":5}],10:[function(require,module,exports){
+},{"_process":17,"fs":6}],11:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2438,7 +2494,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var http = require('http')
 var url = require('url')
 
@@ -2471,7 +2527,7 @@ function validateParams (params) {
   return params
 }
 
-},{"http":33,"url":38}],12:[function(require,module,exports){
+},{"http":34,"url":39}],13:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -2557,7 +2613,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -2582,7 +2638,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -2605,7 +2661,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2652,7 +2708,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":16}],16:[function(require,module,exports){
+},{"_process":17}],17:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2838,7 +2894,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -3375,7 +3431,7 @@ process.umask = function() { return 0; };
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3461,7 +3517,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3548,13 +3604,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":18,"./encode":19}],21:[function(require,module,exports){
+},{"./decode":19,"./encode":20}],22:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3679,7 +3735,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":23,"./_stream_writable":25,"core-util-is":8,"inherits":13,"process-nextick-args":15}],22:[function(require,module,exports){
+},{"./_stream_readable":24,"./_stream_writable":26,"core-util-is":9,"inherits":14,"process-nextick-args":16}],23:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3727,7 +3783,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":24,"core-util-is":8,"inherits":13}],23:[function(require,module,exports){
+},{"./_stream_transform":25,"core-util-is":9,"inherits":14}],24:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4737,7 +4793,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":21,"./internal/streams/BufferList":26,"./internal/streams/destroy":27,"./internal/streams/stream":28,"_process":16,"core-util-is":8,"events":10,"inherits":13,"isarray":29,"process-nextick-args":15,"safe-buffer":32,"string_decoder/":30,"util":4}],24:[function(require,module,exports){
+},{"./_stream_duplex":22,"./internal/streams/BufferList":27,"./internal/streams/destroy":28,"./internal/streams/stream":29,"_process":17,"core-util-is":9,"events":11,"inherits":14,"isarray":30,"process-nextick-args":16,"safe-buffer":33,"string_decoder/":31,"util":5}],25:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4952,7 +5008,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":21,"core-util-is":8,"inherits":13}],25:[function(require,module,exports){
+},{"./_stream_duplex":22,"core-util-is":9,"inherits":14}],26:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5619,7 +5675,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":21,"./internal/streams/destroy":27,"./internal/streams/stream":28,"_process":16,"core-util-is":8,"inherits":13,"process-nextick-args":15,"safe-buffer":32,"util-deprecate":40}],26:[function(require,module,exports){
+},{"./_stream_duplex":22,"./internal/streams/destroy":28,"./internal/streams/stream":29,"_process":17,"core-util-is":9,"inherits":14,"process-nextick-args":16,"safe-buffer":33,"util-deprecate":41}],27:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -5694,7 +5750,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":32}],27:[function(require,module,exports){
+},{"safe-buffer":33}],28:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -5767,17 +5823,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":15}],28:[function(require,module,exports){
+},{"process-nextick-args":16}],29:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":10}],29:[function(require,module,exports){
+},{"events":11}],30:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -6050,7 +6106,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":32}],31:[function(require,module,exports){
+},{"safe-buffer":33}],32:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -6059,7 +6115,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":21,"./lib/_stream_passthrough.js":22,"./lib/_stream_readable.js":23,"./lib/_stream_transform.js":24,"./lib/_stream_writable.js":25}],32:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":22,"./lib/_stream_passthrough.js":23,"./lib/_stream_readable.js":24,"./lib/_stream_transform.js":25,"./lib/_stream_writable.js":26}],33:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -6123,7 +6179,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":6}],33:[function(require,module,exports){
+},{"buffer":7}],34:[function(require,module,exports){
 (function (global){
 var ClientRequest = require('./lib/request')
 var extend = require('xtend')
@@ -6205,7 +6261,7 @@ http.METHODS = [
 	'UNSUBSCRIBE'
 ]
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/request":35,"builtin-status-codes":7,"url":38,"xtend":42}],34:[function(require,module,exports){
+},{"./lib/request":36,"builtin-status-codes":8,"url":39,"xtend":43}],35:[function(require,module,exports){
 (function (global){
 exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
 
@@ -6278,7 +6334,7 @@ function isFunction (value) {
 xhr = null // Help gc
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 (function (process,global,Buffer){
 var capability = require('./capability')
 var inherits = require('inherits')
@@ -6588,7 +6644,7 @@ var unsafeHeaders = [
 ]
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./capability":34,"./response":36,"_process":16,"buffer":6,"inherits":13,"readable-stream":31,"to-arraybuffer":37}],36:[function(require,module,exports){
+},{"./capability":35,"./response":37,"_process":17,"buffer":7,"inherits":14,"readable-stream":32,"to-arraybuffer":38}],37:[function(require,module,exports){
 (function (process,global,Buffer){
 var capability = require('./capability')
 var inherits = require('inherits')
@@ -6774,7 +6830,7 @@ IncomingMessage.prototype._onXHRProgress = function () {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./capability":34,"_process":16,"buffer":6,"inherits":13,"readable-stream":31}],37:[function(require,module,exports){
+},{"./capability":35,"_process":17,"buffer":7,"inherits":14,"readable-stream":32}],38:[function(require,module,exports){
 var Buffer = require('buffer').Buffer
 
 module.exports = function (buf) {
@@ -6803,7 +6859,7 @@ module.exports = function (buf) {
 	}
 }
 
-},{"buffer":6}],38:[function(require,module,exports){
+},{"buffer":7}],39:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7537,7 +7593,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"./util":39,"punycode":17,"querystring":20}],39:[function(require,module,exports){
+},{"./util":40,"punycode":18,"querystring":21}],40:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -7555,7 +7611,7 @@ module.exports = {
   }
 };
 
-},{}],40:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 (function (global){
 
 /**
@@ -7626,7 +7682,7 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 (function (process,Buffer){
 /**
  * Wrapper for built-in http.js to emulate the browser XMLHttpRequest object.
@@ -8250,7 +8306,7 @@ exports.XMLHttpRequest = function() {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":16,"buffer":6,"child_process":5,"fs":5,"http":33,"https":11,"url":38}],42:[function(require,module,exports){
+},{"_process":17,"buffer":7,"child_process":6,"fs":6,"http":34,"https":12,"url":39}],43:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -8271,12 +8327,14 @@ function extend() {
     return target
 }
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 var _api_urls = require('../../../config/api_urls.js');
 
 var _promise = require('../../../helpers/promise.js');
+
+var _translate = require('../../../helpers/translate.js');
 
 document.addEventListener('DOMContentLoaded', function () {
    var contents = document.getElementsByClassName('content');
@@ -8301,18 +8359,24 @@ document.addEventListener('DOMContentLoaded', function () {
             tds[0] = document.createElement('td');
             tds[0].innerHTML = overall.dt_txt;
             tds[1] = document.createElement('td');
+            // TODO: iconの取得
             tds[1].innerHTML = overall.weather[0].description;
             tds[2] = document.createElement('td');
+            // TODO: CとFに切り替える機能と
             tds[2].innerHTML = overall.main.temp_max;
             tds[3] = document.createElement('td');
+            // TODO: CとFに切り替える機能と
             tds[3].innerHTML = overall.main.temp_min;
             tds[4] = document.createElement('td');
+            // TODO: CとFに切り替える機能と
             tds[4].innerHTML = overall.main.temp;
             tds[5] = document.createElement('td');
+            // TODO: CとFに切り替える機能と
             tds[5].innerHTML = overall.main.humidity;
             tds[6] = document.createElement('td');
             tds[6].innerHTML = overall.rain['3h'];
             tds[7] = document.createElement('td');
+            // TODO: CとFに切り替える機能と
             tds[7].innerHTML = overall.wind.speed;
             for (var j = 0; j < tds.length; j++) {
                tr.appendChild(tds[j]);
@@ -8322,8 +8386,10 @@ document.addEventListener('DOMContentLoaded', function () {
       });
    };
 
-   var createGarbageTable = function createGarbageTable() {
-      var garbage_content = displayContent('garbage');
+   var createBinTable = function createBinTable(data) {
+      displayContent('garbage', function (garbage_content) {
+         garbage_content.querySelector('p').innerHTML = data;
+      });
    };
 
    var setAPIData = function setAPIData(path) {
@@ -8334,7 +8400,7 @@ document.addEventListener('DOMContentLoaded', function () {
          if (path == 'weather') {
             createWeatherTable(parsed_data);
          } else if (path == 'garbage') {
-            createGarbageTable();
+            createBinTable(parsed_data);
          }
          // content.innerHTML = parsed_data
          console.log(parsed_data);
@@ -8358,4 +8424,4 @@ document.addEventListener('DOMContentLoaded', function () {
    }
 });
 
-},{"../../../config/api_urls.js":1,"../../../helpers/promise.js":2}]},{},[43]);
+},{"../../../config/api_urls.js":1,"../../../helpers/promise.js":2,"../../../helpers/translate.js":3}]},{},[44]);

@@ -136,7 +136,7 @@
    },
    {
       "id": 1865485,
-      "name": "Akashichō",
+      "name": "Akashicho",
       "country": "JP",
       "coord": {
          "lon": 139.783325,
@@ -289,7 +289,7 @@
    },
    {
       "id": 1865264,
-      "name": "Aoichō",
+      "name": "Aoicho",
       "country": "JP",
       "coord": {
          "lon": 136.916672,
@@ -433,7 +433,7 @@
    },
    {
       "id": 1865006,
-      "name": "Ashiharachō",
+      "name": "Ashiharacho",
       "country": "JP",
       "coord": {
          "lon": 135.5,
@@ -541,7 +541,7 @@
    },
    {
       "id": 1864821,
-      "name": "Bakurochō",
+      "name": "Bakurocho",
       "country": "JP",
       "coord": {
          "lon": 136.649994,
@@ -550,7 +550,7 @@
    },
    {
       "id": 1864815,
-      "name": "Banchō",
+      "name": "Bancho",
       "country": "JP",
       "coord": {
          "lon": 139.75,
@@ -577,7 +577,7 @@
    },
    {
       "id": 1864771,
-      "name": "Bentenchō",
+      "name": "Bentencho",
       "country": "JP",
       "coord": {
          "lon": 135.183334,
@@ -586,7 +586,7 @@
    },
    {
       "id": 2130557,
-      "name": "Bentendōri",
+      "name": "Bentendori",
       "country": "JP",
       "coord": {
          "lon": 141.683334,
@@ -802,7 +802,7 @@
    },
    {
       "id": 2113001,
-      "name": "Chōnan",
+      "name": "Chonan",
       "country": "JP",
       "coord": {
          "lon": 140.233337,
@@ -811,7 +811,7 @@
    },
    {
       "id": 1864470,
-      "name": "Daidō",
+      "name": "Daido",
       "country": "JP",
       "coord": {
          "lon": 131.483337,
@@ -856,7 +856,7 @@
    },
    {
       "id": 1864381,
-      "name": "Denenchōfu",
+      "name": "Denenchofu",
       "country": "JP",
       "coord": {
          "lon": 139.666672,
@@ -865,7 +865,7 @@
    },
    {
       "id": 1864338,
-      "name": "Dōshi",
+      "name": "Doshi",
       "country": "JP",
       "coord": {
          "lon": 139.216675,
@@ -1450,7 +1450,7 @@
    },
    {
       "id": 2112860,
-      "name": "Gojōnome",
+      "name": "Gojonome",
       "country": "JP",
       "coord": {
          "lon": 140.116669,
@@ -1504,7 +1504,7 @@
    },
    {
       "id": 1863516,
-      "name": "Goyuchō",
+      "name": "Goyucho",
       "country": "JP",
       "coord": {
          "lon": 137.316666,
@@ -1558,7 +1558,7 @@
    },
    {
       "id": 2130209,
-      "name": "Hachimanchō",
+      "name": "Hachimancho",
       "country": "JP",
       "coord": {
          "lon": 141.366669,
@@ -1765,7 +1765,7 @@
    },
    {
       "id": 1863250,
-      "name": "Hanabatachō",
+      "name": "Hanabatacho",
       "country": "JP",
       "coord": {
          "lon": 130.699997,
@@ -1846,7 +1846,7 @@
    },
    {
       "id": 1863140,
-      "name": "Harigayachō",
+      "name": "Harigayacho",
       "country": "JP",
       "coord": {
          "lon": 139.633331,
@@ -1855,7 +1855,7 @@
    },
    {
       "id": 1863130,
-      "name": "Harisakichō",
+      "name": "Harisakicho",
       "country": "JP",
       "coord": {
          "lon": 137.149994,
@@ -2035,7 +2035,7 @@
    },
    {
       "id": 1862818,
-      "name": "Higashi-horidōri",
+      "name": "Higashi-horidori",
       "country": "JP",
       "coord": {
          "lon": 139.050003,
@@ -2062,7 +2062,7 @@
    },
    {
       "id": 1862752,
-      "name": "Higashi-ōsaka",
+      "name": "Higashi-osaka",
       "country": "JP",
       "coord": {
          "lon": 135.583328,
@@ -2413,7 +2413,7 @@
    },
    {
       "id": 2130037,
-      "name": "Hokkaidō",
+      "name": "Hokkaido",
       "country": "JP",
       "coord": {
          "lon": 141.346603,
@@ -2449,7 +2449,7 @@
    },
    {
       "id": 2130024,
-      "name": "Hongō",
+      "name": "Hongo",
       "country": "JP",
       "coord": {
          "lon": 144.138733,
@@ -2467,7 +2467,7 @@
    },
    {
       "id": 1862197,
-      "name": "Honjōchō",
+      "name": "Honjocho",
       "country": "JP",
       "coord": {
          "lon": 136.75,
@@ -2521,7 +2521,7 @@
    },
    {
       "id": 1862047,
-      "name": "Hyōgo-ken",
+      "name": "Hyogo-ken",
       "country": "JP",
       "coord": {
          "lon": 134.825974,
@@ -2530,7 +2530,7 @@
    },
    {
       "id": 1862292,
-      "name": "Hōjō",
+      "name": "Hojo",
       "country": "JP",
       "coord": {
          "lon": 134.833328,
@@ -2539,7 +2539,7 @@
    },
    {
       "id": 1862291,
-      "name": "Hōjō",
+      "name": "Hojo",
       "country": "JP",
       "coord": {
          "lon": 139.866669,
@@ -2548,7 +2548,7 @@
    },
    {
       "id": 1862136,
-      "name": "Hōryūji",
+      "name": "Horyūji",
       "country": "JP",
       "coord": {
          "lon": 135.733337,
@@ -2854,7 +2854,7 @@
    },
    {
       "id": 1861598,
-      "name": "Indōji",
+      "name": "Indoji",
       "country": "JP",
       "coord": {
          "lon": 129.75,
@@ -3385,7 +3385,7 @@
    },
    {
       "id": 1861006,
-      "name": "Jizōdō",
+      "name": "Jizodo",
       "country": "JP",
       "coord": {
          "lon": 138.850006,
@@ -3511,7 +3511,7 @@
    },
    {
       "id": 1860797,
-      "name": "Kaigandōri",
+      "name": "Kaigandori",
       "country": "JP",
       "coord": {
          "lon": 133.916672,
@@ -3538,7 +3538,7 @@
    },
    {
       "id": 2129791,
-      "name": "Kaiyō",
+      "name": "Kaiyo",
       "country": "JP",
       "coord": {
          "lon": 144.916672,
@@ -3682,7 +3682,7 @@
    },
    {
       "id": 1860521,
-      "name": "Kami-kōjaku",
+      "name": "Kami-kojaku",
       "country": "JP",
       "coord": {
          "lon": 130.760193,
@@ -3691,7 +3691,7 @@
    },
    {
       "id": 1860483,
-      "name": "Kami-nagarekawachō",
+      "name": "Kami-nagarekawacho",
       "country": "JP",
       "coord": {
          "lon": 132.449997,
@@ -3736,7 +3736,7 @@
    },
    {
       "id": 1860588,
-      "name": "Kamigōri",
+      "name": "Kamigori",
       "country": "JP",
       "coord": {
          "lon": 134.366669,
@@ -3772,7 +3772,7 @@
    },
    {
       "id": 2129752,
-      "name": "Kamikitakōzan",
+      "name": "Kamikitakozan",
       "country": "JP",
       "coord": {
          "lon": 140.956116,
@@ -4033,7 +4033,7 @@
    },
    {
       "id": 1860031,
-      "name": "Karochō",
+      "name": "Karocho",
       "country": "JP",
       "coord": {
          "lon": 134.183334,
@@ -4204,7 +4204,7 @@
    },
    {
       "id": 2112328,
-      "name": "Kasumichō",
+      "name": "Kasumicho",
       "country": "JP",
       "coord": {
          "lon": 140.333328,
@@ -5311,7 +5311,7 @@
    },
    {
       "id": 2129350,
-      "name": "Kyōgoku",
+      "name": "Kyogoku",
       "country": "JP",
       "coord": {
          "lon": 140.886932,
@@ -5320,7 +5320,7 @@
    },
    {
       "id": 1857922,
-      "name": "Kyōguchi",
+      "name": "Kyoguchi",
       "country": "JP",
       "coord": {
          "lon": 135.333328,
@@ -5329,7 +5329,7 @@
    },
    {
       "id": 2129349,
-      "name": "Kyōritsu",
+      "name": "Kyoritsu",
       "country": "JP",
       "coord": {
          "lon": 144.053894,
@@ -5338,7 +5338,7 @@
    },
    {
       "id": 1857907,
-      "name": "Kyōto-fu",
+      "name": "Kyoto-fu",
       "country": "JP",
       "coord": {
          "lon": 135.441177,
@@ -5347,7 +5347,7 @@
    },
    {
       "id": 1857906,
-      "name": "Kyōto-shi",
+      "name": "Kyoto-shi",
       "country": "JP",
       "coord": {
          "lon": 135.724014,
@@ -5356,7 +5356,7 @@
    },
    {
       "id": 1859143,
-      "name": "Kōchi",
+      "name": "Kochi",
       "country": "JP",
       "coord": {
          "lon": 138.933334,
@@ -5365,7 +5365,7 @@
    },
    {
       "id": 1859133,
-      "name": "Kōchi-ken",
+      "name": "Kochi-ken",
       "country": "JP",
       "coord": {
          "lon": 133.364014,
@@ -5374,7 +5374,7 @@
    },
    {
       "id": 1858681,
-      "name": "Kōtari",
+      "name": "Kotari",
       "country": "JP",
       "coord": {
          "lon": 135.699997,
@@ -6085,7 +6085,7 @@
    },
    {
       "id": 1856900,
-      "name": "Mitsugarasuchō",
+      "name": "Mitsugarasucho",
       "country": "JP",
       "coord": {
          "lon": 135.833328,
@@ -6202,7 +6202,7 @@
    },
    {
       "id": 1856764,
-      "name": "Miyamaechō",
+      "name": "Miyamaecho",
       "country": "JP",
       "coord": {
          "lon": 139.199997,
@@ -6589,7 +6589,7 @@
    },
    {
       "id": 1856300,
-      "name": "Myōrakuji",
+      "name": "Myorakuji",
       "country": "JP",
       "coord": {
          "lon": 134.916672,
@@ -6769,7 +6769,7 @@
    },
    {
       "id": 2129072,
-      "name": "Naitōbokujō",
+      "name": "Naitobokujo",
       "country": "JP",
       "coord": {
          "lon": 144.216675,
@@ -6787,7 +6787,7 @@
    },
    {
       "id": 1855973,
-      "name": "Naka-gōchi",
+      "name": "Naka-gochi",
       "country": "JP",
       "coord": {
          "lon": 131.333328,
@@ -7210,7 +7210,7 @@
    },
    {
       "id": 1855444,
-      "name": "Nihon’ōdōri",
+      "name": "Nihon’odori",
       "country": "JP",
       "coord": {
          "lon": 139.649994,
@@ -7336,7 +7336,7 @@
    },
    {
       "id": 1855309,
-      "name": "Nishigochō",
+      "name": "Nishigocho",
       "country": "JP",
       "coord": {
          "lon": 138.183334,
@@ -7363,7 +7363,7 @@
    },
    {
       "id": 1855265,
-      "name": "Nishikichō",
+      "name": "Nishikicho",
       "country": "JP",
       "coord": {
          "lon": 138.566666,
@@ -8299,7 +8299,7 @@
    },
    {
       "id": 1853412,
-      "name": "Renjakuchō",
+      "name": "Renjakucho",
       "country": "JP",
       "coord": {
          "lon": 139.066666,
@@ -8344,7 +8344,7 @@
    },
    {
       "id": 1853398,
-      "name": "Rokujizō",
+      "name": "Rokujizo",
       "country": "JP",
       "coord": {
          "lon": 135.800003,
@@ -8551,7 +8551,7 @@
    },
    {
       "id": 1853188,
-      "name": "Sakaidechō",
+      "name": "Sakaidecho",
       "country": "JP",
       "coord": {
          "lon": 133.850006,
@@ -8614,7 +8614,7 @@
    },
    {
       "id": 1853072,
-      "name": "Sakurabashidōri",
+      "name": "Sakurabashidori",
       "country": "JP",
       "coord": {
          "lon": 137.216675,
@@ -8623,7 +8623,7 @@
    },
    {
       "id": 1853071,
-      "name": "Sakurachō",
+      "name": "Sakuracho",
       "country": "JP",
       "coord": {
          "lon": 139.466675,
@@ -8659,7 +8659,7 @@
    },
    {
       "id": 1853045,
-      "name": "Sambashidōri",
+      "name": "Sambashidori",
       "country": "JP",
       "coord": {
          "lon": 133.550003,
@@ -8677,7 +8677,7 @@
    },
    {
       "id": 1853024,
-      "name": "Sammyō",
+      "name": "Sammyo",
       "country": "JP",
       "coord": {
          "lon": 131.350006,
@@ -8794,7 +8794,7 @@
    },
    {
       "id": 1852831,
-      "name": "Sayō",
+      "name": "Sayo",
       "country": "JP",
       "coord": {
          "lon": 134.366669,
@@ -8803,7 +8803,7 @@
    },
    {
       "id": 1898046,
-      "name": "Seirō",
+      "name": "Seiro",
       "country": "JP",
       "coord": {
          "lon": 139.255005,
@@ -8839,7 +8839,7 @@
    },
    {
       "id": 2111154,
-      "name": "Sembokuchō",
+      "name": "Sembokucho",
       "country": "JP",
       "coord": {
          "lon": 141.149994,
@@ -9046,7 +9046,7 @@
    },
    {
       "id": 1852524,
-      "name": "Shijōdōri",
+      "name": "Shijodori",
       "country": "JP",
       "coord": {
          "lon": 135.763031,
@@ -9100,7 +9100,7 @@
    },
    {
       "id": 1852427,
-      "name": "Shimbashichō",
+      "name": "Shimbashicho",
       "country": "JP",
       "coord": {
          "lon": 139.516663,
@@ -9118,7 +9118,7 @@
    },
    {
       "id": 2111106,
-      "name": "Shimizu-kōji",
+      "name": "Shimizu-koji",
       "country": "JP",
       "coord": {
          "lon": 140.883331,
@@ -9190,7 +9190,7 @@
    },
    {
       "id": 1852195,
-      "name": "Shimo-shirōzu",
+      "name": "Shimo-shirozu",
       "country": "JP",
       "coord": {
          "lon": 130.433334,
@@ -9568,7 +9568,7 @@
    },
    {
       "id": 6419432,
-      "name": "Shōwajima",
+      "name": "Showajima",
       "country": "JP",
       "coord": {
          "lon": 139.75,
@@ -9775,7 +9775,7 @@
    },
    {
       "id": 2127985,
-      "name": "Sōbetsu",
+      "name": "Sobetsu",
       "country": "JP",
       "coord": {
          "lon": 140.886108,
@@ -9937,7 +9937,7 @@
    },
    {
       "id": 1851114,
-      "name": "Takajōmachi",
+      "name": "Takajomachi",
       "country": "JP",
       "coord": {
          "lon": 138.383331,
@@ -10045,7 +10045,7 @@
    },
    {
       "id": 1850940,
-      "name": "Takatachō",
+      "name": "Takatacho",
       "country": "JP",
       "coord": {
          "lon": 136.933334,
@@ -10054,7 +10054,7 @@
    },
    {
       "id": 1850924,
-      "name": "Takatorichō",
+      "name": "Takatoricho",
       "country": "JP",
       "coord": {
          "lon": 135.133331,
@@ -10396,7 +10396,7 @@
    },
    {
       "id": 1850418,
-      "name": "Tenjinchō",
+      "name": "Tenjincho",
       "country": "JP",
       "coord": {
          "lon": 130.399994,
@@ -10747,7 +10747,7 @@
    },
    {
       "id": 1849897,
-      "name": "Totsukachō",
+      "name": "Totsukacho",
       "country": "JP",
       "coord": {
          "lon": 139.533325,
@@ -11053,7 +11053,7 @@
    },
    {
       "id": 1849621,
-      "name": "Tsunō",
+      "name": "Tsuno",
       "country": "JP",
       "coord": {
          "lon": 131.566666,
@@ -11143,7 +11143,7 @@
    },
    {
       "id": 1850314,
-      "name": "Tōbō",
+      "name": "Tobo",
       "country": "JP",
       "coord": {
          "lon": 129.933334,
@@ -11152,7 +11152,7 @@
    },
    {
       "id": 1850233,
-      "name": "Tōji",
+      "name": "Toji",
       "country": "JP",
       "coord": {
          "lon": 130.833328,
@@ -11161,7 +11161,7 @@
    },
    {
       "id": 1850223,
-      "name": "Tōkaichi",
+      "name": "Tokaichi",
       "country": "JP",
       "coord": {
          "lon": 132.850006,
@@ -11170,7 +11170,7 @@
    },
    {
       "id": 1850144,
-      "name": "Tōkyō-to",
+      "name": "Tokyo-to",
       "country": "JP",
       "coord": {
          "lon": 139.691711,
@@ -11539,7 +11539,7 @@
    },
    {
       "id": 1848919,
-      "name": "Wakinohamachō",
+      "name": "Wakinohamacho",
       "country": "JP",
       "coord": {
          "lon": 135.216675,
@@ -12034,7 +12034,7 @@
    },
    {
       "id": 1848364,
-      "name": "Yokodaidō",
+      "name": "Yokodaido",
       "country": "JP",
       "coord": {
          "lon": 132.899994,
@@ -12358,7 +12358,7 @@
    },
    {
       "id": 1848040,
-      "name": "Yūrakuchō",
+      "name": "Yūrakucho",
       "country": "JP",
       "coord": {
          "lon": 139.766663,
@@ -12385,7 +12385,7 @@
    },
    {
       "id": 1847996,
-      "name": "Zaōmachi",
+      "name": "Zaomachi",
       "country": "JP",
       "coord": {
          "lon": 138.850006,
@@ -12457,7 +12457,7 @@
    },
    {
       "id": 1854255,
-      "name": "Ō-kubo",
+      "name": "O-kubo",
       "country": "JP",
       "coord": {
          "lon": 135.350006,
@@ -12466,7 +12466,7 @@
    },
    {
       "id": 2111543,
-      "name": "Ōdaira",
+      "name": "Odaira",
       "country": "JP",
       "coord": {
          "lon": 140.283325,
@@ -12475,7 +12475,7 @@
    },
    {
       "id": 1854762,
-      "name": "Ōdaka",
+      "name": "Odaka",
       "country": "JP",
       "coord": {
          "lon": 136.933334,
@@ -12484,7 +12484,7 @@
    },
    {
       "id": 1854742,
-      "name": "Ōdera",
+      "name": "Odera",
       "country": "JP",
       "coord": {
          "lon": 139.983337,
@@ -12493,7 +12493,7 @@
    },
    {
       "id": 1854712,
-      "name": "Ōfunakoshi",
+      "name": "Ofunakoshi",
       "country": "JP",
       "coord": {
          "lon": 129.354721,
@@ -12502,7 +12502,7 @@
    },
    {
       "id": 1854642,
-      "name": "Ōgimachiya",
+      "name": "Ogimachiya",
       "country": "JP",
       "coord": {
          "lon": 139.399994,
@@ -12511,7 +12511,7 @@
    },
    {
       "id": 1854588,
-      "name": "Ōhama",
+      "name": "Ohama",
       "country": "JP",
       "coord": {
          "lon": 124.19706,
@@ -12520,7 +12520,7 @@
    },
    {
       "id": 2111488,
-      "name": "Ōhasama",
+      "name": "Ohasama",
       "country": "JP",
       "coord": {
          "lon": 141.283325,
@@ -12529,7 +12529,7 @@
    },
    {
       "id": 2111471,
-      "name": "Ōishida",
+      "name": "Oishida",
       "country": "JP",
       "coord": {
          "lon": 140.371384,
@@ -12538,7 +12538,7 @@
    },
    {
       "id": 1854484,
-      "name": "Ōita-ken",
+      "name": "Oita-ken",
       "country": "JP",
       "coord": {
          "lon": 131.433533,
@@ -12547,7 +12547,7 @@
    },
    {
       "id": 1854461,
-      "name": "Ōji",
+      "name": "Oji",
       "country": "JP",
       "coord": {
          "lon": 135.616669,
@@ -12556,7 +12556,7 @@
    },
    {
       "id": 2128690,
-      "name": "Ōmagari",
+      "name": "Omagari",
       "country": "JP",
       "coord": {
          "lon": 141.473892,
@@ -12565,7 +12565,7 @@
    },
    {
       "id": 1854128,
-      "name": "Ōmiya",
+      "name": "Omiya",
       "country": "JP",
       "coord": {
          "lon": 138.616669,
@@ -12574,7 +12574,7 @@
    },
    {
       "id": 1853904,
-      "name": "Ōsaka-fu",
+      "name": "Osaka-fu",
       "country": "JP",
       "coord": {
          "lon": 135.519684,
@@ -12583,7 +12583,7 @@
    },
    {
       "id": 2111302,
-      "name": "Ōtsuki",
+      "name": "Otsuki",
       "country": "JP",
       "coord": {
          "lon": 140.316666,
