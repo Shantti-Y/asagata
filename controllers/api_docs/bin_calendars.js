@@ -10,6 +10,10 @@ const linearSearch = (arr, key_name) => {
    }
 }
 
+const createCalendar = () => {
+   
+}
+
 const getBinCalendars = (area_name) => {
    return new Promise((resolve, reject) => {
       fs.readFile('./models/fixtures/jsons/bin_calendars/Shiga-ken/kusatsu/kusatsu.json', 'utf-8', (err, data) => {
