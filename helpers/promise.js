@@ -1,4 +1,4 @@
-import { XMLHttpRequest } from 'xmlhttprequest'
+const { XMLHttpRequest } = require('xmlhttprequest')
 
 const getAPIData = (URL) => {
    return new Promise((resolve, reject) => {

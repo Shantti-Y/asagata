@@ -1,0 +1,98 @@
+div#bin-calendar {
+   /* default colors */
+   .blue { color: #005ce6; }
+   .pink { color: #ff3377; }
+   .green { color: #008000; }
+   .gray { color: #404040; }
+   .skyblue { color: #00ace6; }
+   .purple { color: #2929a3; }
+   .orange { color: #cc5200; }
+   .beige { color: #e69900; }
+   .yellow { color: #b3b300; }
+   .brown { color: #802b00; }
+
+   div#overall {
+      width: 100%;
+      height: 55px;
+      border-bottom: 1px solid #dedede;
+
+      > * {
+         display: inline-block;
+         height: 100%;
+         > * {
+            display: table-cell;
+            vertical-align: middle;
+            width: inherit;
+         }
+      }
+
+      p.pager {
+         padding: 0 7px;
+         i { padding-top: 16px; }
+      }
+      p#left { border-right: 1px solid #dedede; }
+      p#right { border-left: 1px solid #dedede; }
+
+      div#fullyear {
+         width: 62px;
+         ul {
+            padding: 5px;
+            li.year {
+               font-size: 14px;
+            }
+            li.month-date {
+               margin-top: 5px;
+               font-size: 12px;
+            }
+         }
+      }
+      div#bin-types {
+         border-left: 1px solid #dedede;
+         width: 100px;
+         ul {
+            padding: 6px;
+            li {
+               font-size: 11px;
+            }
+         }
+      }
+   }
+
+   div#calendar {
+      height: calc(300px - 66px - 56px);
+
+      div.current {
+         font-size: 13px;
+         text-align: center;
+         padding: 5px 0;
+      }
+      table {
+         th, td {
+            border: 1px solid #dedede;
+            height: 24px;
+            width: 32px;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 12px;
+         }
+         th { background-color: #ffffcc; }
+         .symbol:after { content: '●'; }
+         .current { background-color: #b3e6ff; }
+         .active { background-color: #ffcc99; }
+      }
+   }
+   div#description {
+      ul{
+         width: 230px;
+         height: 29px;
+         overflow-x: auto;
+         white-space: nowrap;
+         li {
+            display: inline;
+            font-size: 12px;
+            margin-right: 7px;
+         }
+         .symbol:before { content: '●'; }
+      }
+   }
+}

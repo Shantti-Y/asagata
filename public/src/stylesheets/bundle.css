@@ -1,9 +1,0 @@
-body {
-  width: 370px; }
-
-#header {
-  padding: 10px;
-  border-bottom: 1px solid #dedede;
-  text-align: center; }
-  #header li {
-    display: inline-block; }

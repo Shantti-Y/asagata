@@ -1,4 +1,169 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
+var _api_urls = require('../../config/api_urls.js');
+
+var _promise = require('../../helpers/promise.js');
+
+var _weather_reports = require('./weather_reports.js');
+
+var _bin_calendars = require('./bin_calendars.js');
+
+document.addEventListener('DOMContentLoaded', function () {
+   var setAPIData = function setAPIData(path) {
+      var xhr_url = _api_urls.MainURL + path;
+      (0, _promise.getAPIData)(xhr_url).then(function (data) {
+         var parsed_data = JSON.parse(data);
+         if (path == 'weather') {
+            (0, _weather_reports.createWeatherTable)(parsed_data);
+         } else if (path == 'garbage') {
+            (0, _bin_calendars.createBinTable)(parsed_data);
+         }
+      }).catch(function (msg) {
+         console.log(msg);
+      });
+   };
+
+   var paths = ['weather', 'garbage'];
+   var menu_btns = document.getElementsByClassName('menu-btn');
+
+   var _loop = function _loop(i) {
+      menu_btns[i].addEventListener('click', function (e) {
+         e.preventDefault();
+         setAPIData(paths[i]);
+      });
+   };
+
+   for (var i = 0; i < menu_btns.length; i++) {
+      _loop(i);
+   }
+});
+
+},{"../../config/api_urls.js":4,"../../helpers/promise.js":6,"./bin_calendars.js":2,"./weather_reports.js":3}],2:[function(require,module,exports){
+'use strict';
+
+var _create_component = require('../../helpers/create_component.js');
+
+var createBinTable = function createBinTable(data) {
+   /*
+      The data delivered is like this
+      {
+         name:    "西渋川から一丁目",
+         year:    2017,
+         month:   1,
+         days:    [
+            [
+               {
+                  type:    "ペットボトル類",
+                  color:   "green"
+               }
+            ]
+         ]
+      }
+   */
+
+   (0, _create_component.displayContent)('garbage', function (garbage_content) {
+      console.log(data);
+      garbage_content.querySelector('p').innerHTML = data;
+   });
+};
+
+module.exports = { createBinTable: createBinTable };
+
+},{"../../helpers/create_component.js":5}],3:[function(require,module,exports){
+'use strict';
+
+var _create_component = require('../../helpers/create_component.js');
+
+var createWeatherTable = function createWeatherTable(data) {
+   /*
+      The data delivered is like this
+      {
+         cod: "200",
+         message: 0.0055,
+         cnt: 40,
+         list: [
+            {
+               dt: 1508889600,
+               dt_txt: "2017-10-25 00:00:00",      # REVIEW
+               main: {
+                  grnd_level: 999.19,
+                  humidity:   100,                 # REVIEW
+                  pressure:   999.19,
+                  sea_level:  1032.84,
+                  temp:       286.22,              # REVIEW
+                  temp_kf:    0.57,
+                  temp_max:   286.22,              # REVIEW
+                  temp_min:   285.65               # REVIEW
+               },
+               rain: {
+                  3h: 7.64                         # REVIEW
+               },
+               sys:  {
+                  pod: "d"
+               },
+               weather: [
+                  {
+                     description:   "moderate rain",     # REVIEW
+                     icon:          "10d",               # REVIEW
+                     id:            501,
+                     main:          "Rain"               # REVIEW
+                  }
+               ],
+               wind: {
+                  speed:   2.11,                   # REVIEW
+                  deg:     338.506                 # REVIEW
+               }
+            }
+         ],
+         city: {
+            coord: {
+               lat: 35.2194,
+               lon: 136.1365
+            },
+            country: "JP",
+            id: 1852553,
+            name: "Shiga-ken"
+         }
+      }
+        {
+         list: [
+            {
+               dt_txt: "2017-10-25 00:00:00"
+               main: {
+                  humidity:   100,
+                  temp:       286.22,
+                  temp_max:   286.22,
+                  temp_min:   285.65
+               },
+               rain: {
+                  3h: 7.64
+               },
+               weather: [
+                  {
+                     description:   "moderate rain",
+                     icon:          "10d",
+                     main:          "Rain"
+                  }
+               ],
+               wind: {
+                  speed:   2.11,
+                  deg:     338.506
+               }
+            }
+         ]
+      }
+   */
+
+   (0, _create_component.displayContent)('weather', function (weather_content) {
+      console.log(data);
+      weather_content.querySelector('p').innerHTML = data;
+   });
+};
+
+module.exports = { createWeatherTable: createWeatherTable };
+
+},{"../../helpers/create_component.js":5}],4:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -17,14 +182,30 @@ var BinCalendarSrc = './models/fixtures/jsons/bin_calendars';
 module.exports = { MainURL: MainURL, OpenWeatherMapURL: OpenWeatherMapURL, BinCalendarSrc: BinCalendarSrc };
 
 }).call(this,require('_process'))
-},{"_process":17,"dotenv":10}],2:[function(require,module,exports){
+},{"_process":20,"dotenv":13}],5:[function(require,module,exports){
 'use strict';
 
-var _xmlhttprequest = require('xmlhttprequest');
+var displayContent = function displayContent(path_name, callback) {
+   var contents = document.getElementsByClassName('content');
+   var the_content = document.getElementById(path_name);
+   for (var i = 0; i < contents.length; i++) {
+      contents[i].style.display = 'none';
+   }
+   the_content.style.display = 'block';
+   callback(the_content);
+};
+
+module.exports = { displayContent: displayContent };
+
+},{}],6:[function(require,module,exports){
+'use strict';
+
+var _require = require('xmlhttprequest'),
+    XMLHttpRequest = _require.XMLHttpRequest;
 
 var getAPIData = function getAPIData(URL) {
    return new Promise(function (resolve, reject) {
-      var request = new _xmlhttprequest.XMLHttpRequest();
+      var request = new XMLHttpRequest();
       request.open('GET', URL, true);
       request.onload = function () {
          if (request.status === 200) {
@@ -44,62 +225,7 @@ var getAPIData = function getAPIData(URL) {
 
 module.exports = { getAPIData: getAPIData };
 
-},{"xmlhttprequest":42}],3:[function(require,module,exports){
-"use strict";
-
-var area_names = {
-   "北海道": "Hokkaido",
-   "青森県": "Aomori-ken",
-   "岩手県": "Iwate-ken",
-   "宮城県": "Miyagi-ken",
-   "秋田県": "Akita-ken",
-   "山形県": "Yamagata-ken",
-   "福島県": "Fukushima-ken",
-   "茨城県": "Ibaraki-ken",
-   "栃木県": "Tochigi-ken",
-   "群馬県": "Gunma-ken",
-   "埼玉県": "Saitama-ken",
-   "千葉県": "Chiba-ken",
-   "東京都": "Tokyo",
-   "神奈川県": "Kanagawa-ken",
-   "新潟県": "Niigata-ken",
-   "富山県": "Toyama-ken",
-   "石川県": "Ishikawa-ken",
-   "福井県": "Fukui-ken",
-   "山梨県": "Yamanashi-ken",
-   "長野県": "Nagano-ken",
-   "岐阜県": "Gifu-ken",
-   "静岡県": "Shizuoka-ken",
-   "愛知県": "Aichi-ken",
-   "三重県": "Mie-ken",
-   "滋賀県": "Shiga-ken",
-   "京都府": "Kyoto",
-   "大阪府": "Osaka",
-   "兵庫県": "Hyogo-ken",
-   "奈良県": "Nara-ken",
-   "和歌山県": "Wakayama-ken",
-   "鳥取県": "Tottori-ken",
-   "島根県": "Shimane-ken",
-   "岡山県": "Okayama-ken",
-   "広島県": "Hiroshima-ken",
-   "山口県": "Yamaguchi-ken",
-   "徳島県": "Tokushima-ken",
-   "香川県": "Kagawa-ken",
-   "愛媛県": "Ehime-ken",
-   "高知県": "Kochi-ken",
-   "福岡県": "Fukuoka-ken",
-   "佐賀県": "Saga-ken",
-   "長崎県": "Nagasaki-ken",
-   "熊本県": "Kumamoto-ken",
-   "大分県": "Oita-ken",
-   "宮崎県": "Miyazaki-ken",
-   "鹿児島県": "Kagoshima-ken",
-   "沖縄県": "Okinawa-ken"
-};
-
-module.exports = { area_names: area_names };
-
-},{}],4:[function(require,module,exports){
+},{"xmlhttprequest":45}],7:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -215,11 +341,11 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],5:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 
-},{}],6:[function(require,module,exports){
-arguments[4][5][0].apply(exports,arguments)
-},{"dup":5}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
+arguments[4][8][0].apply(exports,arguments)
+},{"dup":8}],10:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -1935,7 +2061,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":4,"ieee754":13}],8:[function(require,module,exports){
+},{"base64-js":7,"ieee754":16}],11:[function(require,module,exports){
 module.exports = {
   "100": "Continue",
   "101": "Switching Protocols",
@@ -2001,7 +2127,7 @@ module.exports = {
   "511": "Network Authentication Required"
 }
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -2112,7 +2238,7 @@ function objectToString(o) {
 }
 
 }).call(this,{"isBuffer":require("../../is-buffer/index.js")})
-},{"../../is-buffer/index.js":15}],10:[function(require,module,exports){
+},{"../../is-buffer/index.js":18}],13:[function(require,module,exports){
 (function (process){
 'use strict'
 
@@ -2190,7 +2316,7 @@ module.exports.load = config
 module.exports.parse = parse
 
 }).call(this,require('_process'))
-},{"_process":17,"fs":6}],11:[function(require,module,exports){
+},{"_process":20,"fs":9}],14:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -2494,7 +2620,7 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],12:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 var http = require('http')
 var url = require('url')
 
@@ -2527,7 +2653,7 @@ function validateParams (params) {
   return params
 }
 
-},{"http":34,"url":39}],13:[function(require,module,exports){
+},{"http":37,"url":42}],16:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -2613,7 +2739,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -2638,7 +2764,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],15:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 /*!
  * Determine if an object is a Buffer
  *
@@ -2661,7 +2787,7 @@ function isSlowBuffer (obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0))
 }
 
-},{}],16:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -2708,7 +2834,7 @@ function nextTick(fn, arg1, arg2, arg3) {
 }
 
 }).call(this,require('_process'))
-},{"_process":17}],17:[function(require,module,exports){
+},{"_process":20}],20:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2894,7 +3020,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],18:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -3431,7 +3557,7 @@ process.umask = function() { return 0; };
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],19:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3517,7 +3643,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],20:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3604,13 +3730,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],21:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":19,"./encode":20}],22:[function(require,module,exports){
+},{"./decode":22,"./encode":23}],25:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3735,7 +3861,7 @@ function forEach(xs, f) {
     f(xs[i], i);
   }
 }
-},{"./_stream_readable":24,"./_stream_writable":26,"core-util-is":9,"inherits":14,"process-nextick-args":16}],23:[function(require,module,exports){
+},{"./_stream_readable":27,"./_stream_writable":29,"core-util-is":12,"inherits":17,"process-nextick-args":19}],26:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -3783,7 +3909,7 @@ function PassThrough(options) {
 PassThrough.prototype._transform = function (chunk, encoding, cb) {
   cb(null, chunk);
 };
-},{"./_stream_transform":25,"core-util-is":9,"inherits":14}],24:[function(require,module,exports){
+},{"./_stream_transform":28,"core-util-is":12,"inherits":17}],27:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -4793,7 +4919,7 @@ function indexOf(xs, x) {
   return -1;
 }
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":22,"./internal/streams/BufferList":27,"./internal/streams/destroy":28,"./internal/streams/stream":29,"_process":17,"core-util-is":9,"events":11,"inherits":14,"isarray":30,"process-nextick-args":16,"safe-buffer":33,"string_decoder/":31,"util":5}],25:[function(require,module,exports){
+},{"./_stream_duplex":25,"./internal/streams/BufferList":30,"./internal/streams/destroy":31,"./internal/streams/stream":32,"_process":20,"core-util-is":12,"events":14,"inherits":17,"isarray":33,"process-nextick-args":19,"safe-buffer":36,"string_decoder/":34,"util":8}],28:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5008,7 +5134,7 @@ function done(stream, er, data) {
 
   return stream.push(null);
 }
-},{"./_stream_duplex":22,"core-util-is":9,"inherits":14}],26:[function(require,module,exports){
+},{"./_stream_duplex":25,"core-util-is":12,"inherits":17}],29:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -5675,7 +5801,7 @@ Writable.prototype._destroy = function (err, cb) {
   cb(err);
 };
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./_stream_duplex":22,"./internal/streams/destroy":28,"./internal/streams/stream":29,"_process":17,"core-util-is":9,"inherits":14,"process-nextick-args":16,"safe-buffer":33,"util-deprecate":41}],27:[function(require,module,exports){
+},{"./_stream_duplex":25,"./internal/streams/destroy":31,"./internal/streams/stream":32,"_process":20,"core-util-is":12,"inherits":17,"process-nextick-args":19,"safe-buffer":36,"util-deprecate":44}],30:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -5750,7 +5876,7 @@ module.exports = function () {
 
   return BufferList;
 }();
-},{"safe-buffer":33}],28:[function(require,module,exports){
+},{"safe-buffer":36}],31:[function(require,module,exports){
 'use strict';
 
 /*<replacement>*/
@@ -5823,17 +5949,17 @@ module.exports = {
   destroy: destroy,
   undestroy: undestroy
 };
-},{"process-nextick-args":16}],29:[function(require,module,exports){
+},{"process-nextick-args":19}],32:[function(require,module,exports){
 module.exports = require('events').EventEmitter;
 
-},{"events":11}],30:[function(require,module,exports){
+},{"events":14}],33:[function(require,module,exports){
 var toString = {}.toString;
 
 module.exports = Array.isArray || function (arr) {
   return toString.call(arr) == '[object Array]';
 };
 
-},{}],31:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 'use strict';
 
 var Buffer = require('safe-buffer').Buffer;
@@ -6106,7 +6232,7 @@ function simpleWrite(buf) {
 function simpleEnd(buf) {
   return buf && buf.length ? this.write(buf) : '';
 }
-},{"safe-buffer":33}],32:[function(require,module,exports){
+},{"safe-buffer":36}],35:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = exports;
 exports.Readable = exports;
@@ -6115,7 +6241,7 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":22,"./lib/_stream_passthrough.js":23,"./lib/_stream_readable.js":24,"./lib/_stream_transform.js":25,"./lib/_stream_writable.js":26}],33:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":25,"./lib/_stream_passthrough.js":26,"./lib/_stream_readable.js":27,"./lib/_stream_transform.js":28,"./lib/_stream_writable.js":29}],36:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var buffer = require('buffer')
 var Buffer = buffer.Buffer
@@ -6179,7 +6305,7 @@ SafeBuffer.allocUnsafeSlow = function (size) {
   return buffer.SlowBuffer(size)
 }
 
-},{"buffer":7}],34:[function(require,module,exports){
+},{"buffer":10}],37:[function(require,module,exports){
 (function (global){
 var ClientRequest = require('./lib/request')
 var extend = require('xtend')
@@ -6261,7 +6387,7 @@ http.METHODS = [
 	'UNSUBSCRIBE'
 ]
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./lib/request":36,"builtin-status-codes":8,"url":39,"xtend":43}],35:[function(require,module,exports){
+},{"./lib/request":39,"builtin-status-codes":11,"url":42,"xtend":46}],38:[function(require,module,exports){
 (function (global){
 exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
 
@@ -6334,7 +6460,7 @@ function isFunction (value) {
 xhr = null // Help gc
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],36:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 (function (process,global,Buffer){
 var capability = require('./capability')
 var inherits = require('inherits')
@@ -6644,7 +6770,7 @@ var unsafeHeaders = [
 ]
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./capability":35,"./response":37,"_process":17,"buffer":7,"inherits":14,"readable-stream":32,"to-arraybuffer":38}],37:[function(require,module,exports){
+},{"./capability":38,"./response":40,"_process":20,"buffer":10,"inherits":17,"readable-stream":35,"to-arraybuffer":41}],40:[function(require,module,exports){
 (function (process,global,Buffer){
 var capability = require('./capability')
 var inherits = require('inherits')
@@ -6830,7 +6956,7 @@ IncomingMessage.prototype._onXHRProgress = function () {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"./capability":35,"_process":17,"buffer":7,"inherits":14,"readable-stream":32}],38:[function(require,module,exports){
+},{"./capability":38,"_process":20,"buffer":10,"inherits":17,"readable-stream":35}],41:[function(require,module,exports){
 var Buffer = require('buffer').Buffer
 
 module.exports = function (buf) {
@@ -6859,7 +6985,7 @@ module.exports = function (buf) {
 	}
 }
 
-},{"buffer":7}],39:[function(require,module,exports){
+},{"buffer":10}],42:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -7593,7 +7719,7 @@ Url.prototype.parseHost = function() {
   if (host) this.hostname = host;
 };
 
-},{"./util":40,"punycode":18,"querystring":21}],40:[function(require,module,exports){
+},{"./util":43,"punycode":21,"querystring":24}],43:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -7611,7 +7737,7 @@ module.exports = {
   }
 };
 
-},{}],41:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 (function (global){
 
 /**
@@ -7682,7 +7808,7 @@ function config (name) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],42:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 (function (process,Buffer){
 /**
  * Wrapper for built-in http.js to emulate the browser XMLHttpRequest object.
@@ -8306,7 +8432,7 @@ exports.XMLHttpRequest = function() {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":17,"buffer":7,"child_process":6,"fs":6,"http":34,"https":12,"url":39}],43:[function(require,module,exports){
+},{"_process":20,"buffer":10,"child_process":9,"fs":9,"http":37,"https":15,"url":42}],46:[function(require,module,exports){
 module.exports = extend
 
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -8327,101 +8453,4 @@ function extend() {
     return target
 }
 
-},{}],44:[function(require,module,exports){
-'use strict';
-
-var _api_urls = require('../../../config/api_urls.js');
-
-var _promise = require('../../../helpers/promise.js');
-
-var _translate = require('../../../helpers/translate.js');
-
-document.addEventListener('DOMContentLoaded', function () {
-   var contents = document.getElementsByClassName('content');
-   var displayContent = function displayContent(path_name, callback) {
-      var the_content = document.getElementById(path_name);
-      for (var i = 0; i < contents.length; i++) {
-         contents[i].style.display = 'none';
-      }
-      the_content.style.display = 'block';
-      callback(the_content);
-   };
-
-   var createWeatherTable = function createWeatherTable(data) {
-      displayContent('weather', function (weather_content) {
-         weather_content.querySelector('h1').innerHTML = data.city.name;
-         console.log(weather_content);
-         for (var i = 0; i < data.list.length; i++) {
-            var overall = data.list[i];
-            console.log(overall);
-            var tr = document.createElement('tr');
-            var tds = new Array(8);
-            tds[0] = document.createElement('td');
-            tds[0].innerHTML = overall.dt_txt;
-            tds[1] = document.createElement('td');
-            // TODO: iconの取得
-            tds[1].innerHTML = overall.weather[0].description;
-            tds[2] = document.createElement('td');
-            // TODO: CとFに切り替える機能と
-            tds[2].innerHTML = overall.main.temp_max;
-            tds[3] = document.createElement('td');
-            // TODO: CとFに切り替える機能と
-            tds[3].innerHTML = overall.main.temp_min;
-            tds[4] = document.createElement('td');
-            // TODO: CとFに切り替える機能と
-            tds[4].innerHTML = overall.main.temp;
-            tds[5] = document.createElement('td');
-            // TODO: CとFに切り替える機能と
-            tds[5].innerHTML = overall.main.humidity;
-            tds[6] = document.createElement('td');
-            tds[6].innerHTML = overall.rain['3h'];
-            tds[7] = document.createElement('td');
-            // TODO: CとFに切り替える機能と
-            tds[7].innerHTML = overall.wind.speed;
-            for (var j = 0; j < tds.length; j++) {
-               tr.appendChild(tds[j]);
-            }
-            weather_content.querySelector('table tbody').appendChild(tr);
-         }
-      });
-   };
-
-   var createBinTable = function createBinTable(data) {
-      displayContent('garbage', function (garbage_content) {
-         garbage_content.querySelector('p').innerHTML = data;
-      });
-   };
-
-   var setAPIData = function setAPIData(path) {
-      var xhr_url = _api_urls.MainURL + path;
-      (0, _promise.getAPIData)(xhr_url).then(function (data) {
-         var parsed_data = JSON.parse(data);
-         // TODO: データ構造を極力統一してif分岐をなくす
-         if (path == 'weather') {
-            createWeatherTable(parsed_data);
-         } else if (path == 'garbage') {
-            createBinTable(parsed_data);
-         }
-         // content.innerHTML = parsed_data
-         console.log(parsed_data);
-      }).catch(function (msg) {
-         console.log(msg);
-      });
-   };
-
-   var paths = ['weather', 'garbage'];
-   var menu_btns = document.getElementsByClassName('menu-btn');
-
-   var _loop = function _loop(i) {
-      menu_btns[i].addEventListener('click', function (e) {
-         e.preventDefault();
-         setAPIData(paths[i]);
-      });
-   };
-
-   for (var i = 0; i < menu_btns.length; i++) {
-      _loop(i);
-   }
-});
-
-},{"../../../config/api_urls.js":1,"../../../helpers/promise.js":2,"../../../helpers/translate.js":3}]},{},[44]);
+},{}]},{},[1]);

@@ -5,8 +5,8 @@ import watchify from 'watchify'
 import source from 'vinyl-source-stream'
 import { spawn } from 'child_process'
 
-const js_assets = './public/assets/javascripts/'
-const css_assets = './public/assets/stylesheets/'
+const js_assets = './assets/javascripts/'
+const css_assets = './assets/stylesheets/'
 const node_server = './controllers/'
 
 // TODO: nodemonを使い、自動化を検討
@@ -30,13 +30,13 @@ gulp.task('scripts', () => {
       b.transform('babelify', { presets: ['es2015'] })
       .bundle()
       .pipe(source('bundle.js'))
-      .pipe(gulp.dest('./public/src/javascripts'))
+      .pipe(gulp.dest('./public/javascripts'))
 })
 
 gulp.task('styles', () => {
    sass(css_assets + 'bundle.scss')
       .on('error', sass.logError)
-      .pipe(gulp.dest('./public/src/stylesheets'))
+      .pipe(gulp.dest('./public/stylesheets'))
 })
 
 gulp.task('watch', () => {

@@ -1,0 +1,198 @@
+@charset "UTF-8";
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  width: 230px;
+  height: 330px;
+  border: 1px solid #000000;
+  /* scroll-bar */ }
+  body * {
+    font-family: sans-serif; }
+  body ::-webkit-scrollbar {
+    width: 4px;
+    height: 9px; }
+  body ::-webkit-scrollbar-track {
+    border-radius: 7px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1); }
+  body ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 50, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); }
+
+div#header {
+  overflow: hidden; }
+  div#header ul {
+    border-bottom: 1px solid #dedede; }
+  div#header ul#higher {
+    overflow: hidden;
+    background-color: #222525; }
+    div#header ul#higher li#title {
+      float: left;
+      font-size: 22px;
+      color: #e8e8e8;
+      width: 185px;
+      text-align: left;
+      padding: 7px 0 7px 11px; }
+    div#header ul#higher li#setting {
+      float: right;
+      width: calc(100% - 196px); }
+      div#header ul#higher li#setting i {
+        margin: 4px 6px 0 0;
+        display: block;
+        padding: 4px 5px;
+        font-size: 19px;
+        color: #e8e8e8;
+        border-radius: 3px; }
+  div#header ul#lower {
+    width: inherit;
+    box-shadow: 0 3px 4px -3px #858585; }
+    div#header ul#lower li {
+      background-color: #eceeee;
+      float: left;
+      display: inline-block;
+      padding: 7px 11px;
+      font-size: 12px;
+      border-left: 1px solid #dedede; }
+      div#header ul#lower li i {
+        font-size: 15px;
+        margin-right: 5px; }
+      div#header ul#lower li:last-child {
+        border-right: 1px solid #dedede; }
+    div#header ul#lower li.active {
+      padding: 6px 10px;
+      border: 1px solid orange; }
+
+div#bin-calendar {
+  /* default colors */ }
+  div#bin-calendar .blue {
+    color: #005ce6; }
+  div#bin-calendar .pink {
+    color: #ff3377; }
+  div#bin-calendar .green {
+    color: #008000; }
+  div#bin-calendar .gray {
+    color: #404040; }
+  div#bin-calendar .skyblue {
+    color: #00ace6; }
+  div#bin-calendar .purple {
+    color: #2929a3; }
+  div#bin-calendar .orange {
+    color: #cc5200; }
+  div#bin-calendar .beige {
+    color: #e69900; }
+  div#bin-calendar .yellow {
+    color: #b3b300; }
+  div#bin-calendar .brown {
+    color: #802b00; }
+  div#bin-calendar div#overall {
+    width: 100%;
+    height: 55px;
+    border-bottom: 1px solid #dedede; }
+    div#bin-calendar div#overall > * {
+      display: inline-block;
+      height: 100%; }
+      div#bin-calendar div#overall > * > * {
+        display: table-cell;
+        vertical-align: middle;
+        width: inherit; }
+    div#bin-calendar div#overall p.pager {
+      padding: 0 7px; }
+      div#bin-calendar div#overall p.pager i {
+        padding-top: 16px; }
+    div#bin-calendar div#overall p#left {
+      border-right: 1px solid #dedede; }
+    div#bin-calendar div#overall p#right {
+      border-left: 1px solid #dedede; }
+    div#bin-calendar div#overall div#fullyear {
+      width: 62px; }
+      div#bin-calendar div#overall div#fullyear ul {
+        padding: 5px; }
+        div#bin-calendar div#overall div#fullyear ul li.year {
+          font-size: 14px; }
+        div#bin-calendar div#overall div#fullyear ul li.month-date {
+          margin-top: 5px;
+          font-size: 12px; }
+    div#bin-calendar div#overall div#bin-types {
+      border-left: 1px solid #dedede;
+      width: 100px; }
+      div#bin-calendar div#overall div#bin-types ul {
+        padding: 6px; }
+        div#bin-calendar div#overall div#bin-types ul li {
+          font-size: 11px; }
+  div#bin-calendar div#calendar {
+    height: calc(300px - 66px - 56px); }
+    div#bin-calendar div#calendar div.current {
+      font-size: 13px;
+      text-align: center;
+      padding: 5px 0; }
+    div#bin-calendar div#calendar table th, div#bin-calendar div#calendar table td {
+      border: 1px solid #dedede;
+      height: 24px;
+      width: 32px;
+      vertical-align: middle;
+      text-align: center;
+      font-size: 12px; }
+    div#bin-calendar div#calendar table th {
+      background-color: #ffffcc; }
+    div#bin-calendar div#calendar table .symbol:after {
+      content: '●'; }
+    div#bin-calendar div#calendar table .current {
+      background-color: #b3e6ff; }
+    div#bin-calendar div#calendar table .active {
+      background-color: #ffcc99; }
+  div#bin-calendar div#description ul {
+    width: 230px;
+    height: 29px;
+    overflow-x: auto;
+    white-space: nowrap; }
+    div#bin-calendar div#description ul li {
+      display: inline;
+      font-size: 12px;
+      margin-right: 7px; }
+    div#bin-calendar div#description ul .symbol:before {
+      content: '●'; }

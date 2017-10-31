@@ -1,3 +1,8 @@
+const fs = require('fs')
+const { getAPIData } = require('./promise.js')
+const dotenv = require('dotenv')
+dotenv.config()
+
 const area_names = {
    "北海道": "Hokkaido",
    "青森県": "Aomori-ken",
@@ -47,5 +52,31 @@ const area_names = {
    "鹿児島県": "Kagoshima-ken",
    "沖縄県": "Okinawa-ken"
 }
+// TODO 非同期処理をループさせるには？
+fs.readFile('../models/fixtures/jsons/open_weather_map/cities_in_japan.json', 'utf-8', (err, data) => {
+   let parsed_data = JSON.parse(data)
+   let count = 0
+for(let i = 0; i < parsed_data.length; i++){
+   console.log(parsed_data[i].name)
+   let url = 'https://translation.googleapis.com/language/translate/v2?key=' +  process.env.GOOGLE_TRANSLATE_API_KEY
+   + '&source=en&target=ja&format=text&q=' + parsed_data[i].name
+   getAPIData(url).then((value) => {
+      let parsed_value = JSON.parse(value)
+      parsed_data[i].name = parsed_value.data.translations[0].translatedText
+      console.log(parsed_data[i].name)
+      if(count == parsed_data.length){
+         fs.writeFile('../models/fixtures/jsons/open_weather_map/cities_in_japan.json', JSON.stringify(new_data, null, 3), (err) => {
+            if(err) throw err
+         })
+      }
+      count += 1
+   }).catch((err) => {
+      console.log(new Error(err))
+   })
+}
+
+
+
+})
 
 module.exports = { area_names }
