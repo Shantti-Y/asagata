@@ -15,105 +15,12 @@
          <li id="setting"><i class="fa fa-cog"></i></li>
       </ul>
       <ul id="lower">
-         <li id="menu-weather" class="active"><i class="fa fa-umbrella"></i><span>天気予報</span></li>
-         <li id="menu-bin"><i class="fa fa-trash-o"></i><span>ゴミ分別</span></li>
+         <li id="menu-weather" class="menu-btn active"><i class="fa fa-umbrella"></i><span>天気予報</span></li>
+         <li id="menu-bin" class="menu-btn"><i class="fa fa-trash-o"></i><span>ゴミ分別</span></li>
       </ul>
    </div>
    <div id="main">
-      <div id="bin-calendar">
-         <div id="overall">
-            <p id="left" class="pager"><i class="fa fa-angle-double-left"></i></p>
-            <div id="fullyear">
-               <ul>
-                  <li class="year">2017年</li>
-                  <li class="month-date">11月8日</li>
-               </ul>
-            </div>
-            <div id="bin-types">
-               <ul>
-                  <li>焼却ゴミ類</li>
-               </ul>
-            </div>
-            <p id="right" class="pager"><i class="fa fa-angle-double-right"></i></p>
-         </div>
-         <div id="calendar">
-            <div class="current"><span>2017年11月</span></div>
-            <table>
-               <thead>
-                  <tr>
-                     <th>日</th>
-                     <th>月</th>
-                     <th>火</th>
-                     <th>水</th>
-                     <th>木</th>
-                     <th>金</th>
-                     <th>土</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr class="week">
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td class="symbol green current">1</td>
-                     <td class="symbol purple">2</td>
-                     <td class="symbol blue">3</td>
-                     <td>4</td>
-                  </tr>
-                  <tr class="week">
-                     <td>5</td>
-                     <td class="symbol pink">6</td>
-                     <td class="symbol blue active">7</td>
-                     <td class="symbol orange">8</td>
-                     <td class="symbol yellow">9</td>
-                     <td class="symbol blue">10</td>
-                     <td>11</td>
-                  </tr>
-                  <tr class="week">
-                     <td>12</td>
-                     <td>13</td>
-                     <td class="symbol blue">14</td>
-                     <td class="symbol beige">15</td>
-                     <td class="symbol brown">16</td>
-                     <td class="symbol blue">17</td>
-                     <td>18</td>
-                  </tr>
-                  <tr class="week">
-                     <td>19</td>
-                     <td class="symbol pink">20</td>
-                     <td class="symbol blue">21</td>
-                     <td class="symbol gray">22</td>
-                     <td class="symbol skyblue">23</td>
-                     <td class="symbol blue">24</td>
-                     <td>25</td>
-                  </tr>
-                  <tr class="week">
-                     <td>26</td>
-                     <td>27</td>
-                     <td class="symbol blue">28</td>
-                     <td>29</td>
-                     <td>30</td>
-                     <td></td>
-                     <td></td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-         <div id="description">
-            <ul>
-               <li class="symbol blue">焼却ゴミ類</li>
-               <li class="symbol pink">プラスチック製容器類</li>
-               <li class="symbol green">ペットボトル類</li>
-               <li class="symbol gray">空き缶類</li>
-               <li class="symbol skyblue">飲・食料用ガラスびん類</li>
-               <li class="symbol purple">破砕ゴミ類</li>
-               <li class="symbol orange">陶器・ガラス類</li>
-               <li class="symbol beige">新聞・広告類</li>
-               <li class="symbol yellow">雑誌・雑紙類</li>
-               <li class="symbol brown">段ボール類</li>
-            </ul>
-         </div>
-      </div>
+      <binCalendar></binCalendar>
    </div>
    <script type="text/javascript" src="../public/javascripts/bundle.js"></script>
 </body>

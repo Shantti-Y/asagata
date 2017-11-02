@@ -72,13 +72,23 @@ div#bin-calendar {
             height: 24px;
             width: 32px;
             vertical-align: middle;
-            text-align: center;
             font-size: 12px;
          }
          th { background-color: #ffffcc; }
-         .symbol:after { content: '●'; }
-         .current { background-color: #b3e6ff; }
-         .active { background-color: #ffcc99; }
+         td {
+            div {
+               padding: 3px;
+               span {
+                  display: inline-block;
+                  font-size: 11px;
+               }
+               .day { float: left; }
+               .symbol { float: right; }
+            }
+
+            .current { background-color: #b3e6ff; }
+            .active { background-color: #ffcc99; }
+         }
       }
    }
    div#description {

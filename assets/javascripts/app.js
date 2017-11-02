@@ -1,5 +1,6 @@
 import { MainURL } from '../../config/api_urls.js'
 import { getAPIData } from '../../helpers/promise.js'
+import Vue from 'vue'
 
 import { createWeatherTable } from './weather_reports.js'
 import { createBinTable } from './bin_calendars.js'

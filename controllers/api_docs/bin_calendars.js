@@ -14,7 +14,6 @@ const linearSearch = (arr, key_name) => {
 }
 
 const createCalendar = (weekdays, init_date) => {
-
    let bin_days = new Array(7)
    for(let i = 0; i < bin_days.length; i++){
       bin_days[i] = new Array()
@@ -23,7 +22,7 @@ const createCalendar = (weekdays, init_date) => {
    for(let i = 0; i < weekdays.length; i++){
       let weekday = weekdays[i]
       let pos = weekday_nums[weekday.date]
-      bin_days[pos].push({freq: weekday.freq, bin: weekday.bin})
+      bin_days[pos].push({ freq: weekday.freq, bin: weekday.bin })
    }
 
    let calendar = new Object()
@@ -73,6 +72,7 @@ const createCalendar = (weekdays, init_date) => {
          let current_day = (i + first_day) % 7
          if(current_day == j && bin_days[j].length > 0){
             // Looped by linear list (like moving veritcally)
+
             for(let k = 0; k < bin_days[j].length; k++){
                let bin_data = bin_days[j][k]
                let week
@@ -102,7 +102,7 @@ const getBinCalendars = () => {
          let area = linearSearch(parsed_data.areas, '西渋川')
          let calendar = createCalendar(area.weekdays, new Date(new Date().setMonth(0)))
 
-         resolve({ name: area.name, calendar: calendar })
+         resolve({ name: area.name, calendar: calendar, bins: parsed_data.bins })
       })
    }).then((value) => {
       return value

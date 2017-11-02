@@ -2,11 +2,14 @@ import gulp from 'gulp'
 import sass from 'gulp-ruby-sass'
 import browserify from 'browserify'
 import watchify from 'watchify'
+import babelify from 'babelify'
+import vueify from 'vueify'
 import source from 'vinyl-source-stream'
 import { spawn } from 'child_process'
 
 const js_assets = './assets/javascripts/'
 const css_assets = './assets/stylesheets/'
+const vue_assets = './views/'
 const node_server = './controllers/'
 
 // TODO: nodemonを使い、自動化を検討
@@ -25,10 +28,14 @@ gulp.task('server', () => {
 
 gulp.task('scripts', () => {
    let b = browserify({
-      entries: [js_assets + 'app.js']
+      entries: [js_assets + 'app.js'],
+      extensions: ['.js', '.vue'],
+      transform: [
+         vueify,
+         babelify.configure({ 'presets': ['es2015'] })
+      ]
    })
-      b.transform('babelify', { presets: ['es2015'] })
-      .bundle()
+      b.bundle()
       .pipe(source('bundle.js'))
       .pipe(gulp.dest('./public/javascripts'))
 })
@@ -42,6 +49,7 @@ gulp.task('styles', () => {
 gulp.task('watch', () => {
    // gulp.watch([node_server + '*.js', node_server + 'api_docs/*.js'], ['server'])
    gulp.watch(js_assets + '*.js', ['scripts'])
+   gulp.watch(vue_assets + '**/*.vue', ['scripts'])
    gulp.watch(css_assets + '*.scss', ['styles'])
 })
 

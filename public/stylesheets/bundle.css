@@ -175,15 +175,21 @@ div#bin-calendar {
       height: 24px;
       width: 32px;
       vertical-align: middle;
-      text-align: center;
       font-size: 12px; }
     div#bin-calendar div#calendar table th {
       background-color: #ffffcc; }
-    div#bin-calendar div#calendar table .symbol:after {
-      content: '●'; }
-    div#bin-calendar div#calendar table .current {
+    div#bin-calendar div#calendar table td div {
+      padding: 3px; }
+      div#bin-calendar div#calendar table td div span {
+        display: inline-block;
+        font-size: 11px; }
+      div#bin-calendar div#calendar table td div .day {
+        float: left; }
+      div#bin-calendar div#calendar table td div .symbol {
+        float: right; }
+    div#bin-calendar div#calendar table td .current {
       background-color: #b3e6ff; }
-    div#bin-calendar div#calendar table .active {
+    div#bin-calendar div#calendar table td .active {
       background-color: #ffcc99; }
   div#bin-calendar div#description ul {
     width: 230px;

@@ -1,5 +1,8 @@
 import { displayContent } from '../../helpers/create_component.js'
 
+import Vue from 'vue'
+import binCalendar from '../../views/bin_calendars/main.vue'
+
 const createBinTable = (data) => {
    /*
       The data delivered is like this
@@ -14,14 +17,23 @@ const createBinTable = (data) => {
                   color:   "green"
                }
             ]
+         ],
+         bins:    [
+            {
+               type:    "焼却ゴミ類",
+               color:   "blue"
+            }
          ]
       }
    */
 
-   displayContent('garbage', (garbage_content) => {
-      console.log(data)
-      garbage_content.querySelector('p').innerHTML = data
+   let bins = new Vue({
+      el: '#main',
+      render(h){
+         return h(binCalendar, { props: { values: data } })
+      }
    })
+
 }
 
 module.exports = { createBinTable }
