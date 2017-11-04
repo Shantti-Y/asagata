@@ -1,6 +1,6 @@
 <template>
    <div id="overall">
-      <p id="left" class="pager" v-on:click="setAPIData('garbage')"><i class="fa fa-angle-double-left"></i></p>
+      <p id="left" class="pager" v-on:click="setAPIData('garbage/' + selected_date.year + '/' + (selected_date.month - 1))"><i class="fa fa-angle-double-left"></i></p>
       <div id="fullyear">
          <ul>
             <li class="year">{{ selected_date.year }}年</li>
@@ -12,7 +12,7 @@
             <li>{{ selected_date.bins[0].type }}</li>
          </ul>
       </div>
-      <p id="right" class="pager" v-on:click="setAPIData('garbage')"><i class="fa fa-angle-double-right"></i></p>
+      <p id="right" class="pager" v-on:click="setAPIData('garbage/' + selected_date.year + '/' + (selected_date.month + 1))"><i class="fa fa-angle-double-right"></i></p>
    </div>
 </template>
 <script>

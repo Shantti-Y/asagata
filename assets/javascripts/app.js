@@ -11,7 +11,7 @@ const setAPIData = (path) => {
       let parsed_data = JSON.parse(data)
          if(path == 'weather'){
             createWeatherTable(parsed_data)
-         }else if(path == 'garbage'){
+         }else if(/garbage.+/.test(path)){
             createBinTable(parsed_data)
          }
    }).catch((msg) => {
@@ -20,12 +20,14 @@ const setAPIData = (path) => {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+   const year = new Date().getFullYear()
+   const month = new Date().getMonth() + 1
    const paths = ['weather', 'garbage']
    let menu_btns = document.getElementsByClassName('menu-btn')
    for(let i = 0; i < menu_btns.length; i++){
       menu_btns[i].addEventListener('click', (e) => {
          e.preventDefault()
-         setAPIData(paths[i])
+         setAPIData(paths[i] + '/' + year + '/' + month)
       })
    }
 })

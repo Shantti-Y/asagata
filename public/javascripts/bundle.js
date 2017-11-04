@@ -21,7 +21,7 @@ var setAPIData = function setAPIData(path) {
       var parsed_data = JSON.parse(data);
       if (path == 'weather') {
          (0, _weather_reports.createWeatherTable)(parsed_data);
-      } else if (path == 'garbage') {
+      } else if (/garbage.+/.test(path)) {
          (0, _bin_calendars.createBinTable)(parsed_data);
       }
    }).catch(function (msg) {
@@ -30,13 +30,15 @@ var setAPIData = function setAPIData(path) {
 };
 
 document.addEventListener('DOMContentLoaded', function () {
+   var year = new Date().getFullYear();
+   var month = new Date().getMonth() + 1;
    var paths = ['weather', 'garbage'];
    var menu_btns = document.getElementsByClassName('menu-btn');
 
    var _loop = function _loop(i) {
       menu_btns[i].addEventListener('click', function (e) {
          e.preventDefault();
-         setAPIData(paths[i]);
+         setAPIData(paths[i] + '/' + year + '/' + month);
       });
    };
 
@@ -16673,7 +16675,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"overall"}},[_c('p',{staticClass:"pager",attrs:{"id":"left"},on:{"click":function($event){_vm.setAPIData('garbage')}}},[_c('i',{staticClass:"fa fa-angle-double-left"})]),_vm._v(" "),_c('div',{attrs:{"id":"fullyear"}},[_c('ul',[_c('li',{staticClass:"year"},[_vm._v(_vm._s(_vm.selected_date.year)+"年")]),_vm._v(" "),_c('li',{staticClass:"month-date"},[_vm._v(_vm._s(_vm.selected_date.month)+"月"+_vm._s(_vm.selected_date.day)+"日")])])]),_vm._v(" "),_c('div',{attrs:{"id":"bin-types"}},[(_vm.selected_date.bins != 'no bin')?_c('ul',[_c('li',[_vm._v(_vm._s(_vm.selected_date.bins[0].type))])]):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"pager",attrs:{"id":"right"},on:{"click":function($event){_vm.setAPIData('garbage')}}},[_c('i',{staticClass:"fa fa-angle-double-right"})])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"overall"}},[_c('p',{staticClass:"pager",attrs:{"id":"left"},on:{"click":function($event){_vm.setAPIData('garbage/' + _vm.selected_date.year + '/' + (_vm.selected_date.month - 1))}}},[_c('i',{staticClass:"fa fa-angle-double-left"})]),_vm._v(" "),_c('div',{attrs:{"id":"fullyear"}},[_c('ul',[_c('li',{staticClass:"year"},[_vm._v(_vm._s(_vm.selected_date.year)+"年")]),_vm._v(" "),_c('li',{staticClass:"month-date"},[_vm._v(_vm._s(_vm.selected_date.month)+"月"+_vm._s(_vm.selected_date.day)+"日")])])]),_vm._v(" "),_c('div',{attrs:{"id":"bin-types"}},[(_vm.selected_date.bins != 'no bin')?_c('ul',[_c('li',[_vm._v(_vm._s(_vm.selected_date.bins[0].type))])]):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"pager",attrs:{"id":"right"},on:{"click":function($event){_vm.setAPIData('garbage/' + _vm.selected_date.year + '/' + (_vm.selected_date.month + 1))}}},[_c('i',{staticClass:"fa fa-angle-double-right"})])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

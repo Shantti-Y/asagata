@@ -29,7 +29,7 @@ const createCalendar = (weekdays, init_date) => {
    let year = init_date.getFullYear()
    let month = init_date.getMonth()
    let days = new Array()
-
+   console.log(init_date)
    /*
       JSON structure could be like this.
       {
@@ -55,7 +55,7 @@ const createCalendar = (weekdays, init_date) => {
       return Date.parse(new Date(y, m, d))
    }
 
-   let date = new Date(new Date().setMonth(month))
+   let date = init_date
    let first_day = new Date(date.setDate(1)).getDay()
    let max_days = month_dates[month]
 
@@ -94,12 +94,19 @@ const createCalendar = (weekdays, init_date) => {
    return calendar
 }
 
-const getBinCalendars = () => {
+const getBinCalendars = (area, year, month) => {
    return new Promise((resolve, reject) => {
       fs.readFile('./models/fixtures/jsons/bin_calendars/滋賀県/草津市/草津市.json', 'utf-8', (err, data) => {
          let parsed_data = JSON.parse(data)
          let area = linearSearch(parsed_data.areas, '西渋川')
-         let calendar = createCalendar(area.weekdays, new Date(new Date().setMonth(10)))
+         if(month > 12){
+            year += 1
+            month = 1
+         }else if(month < 1){
+            year -= 1
+            month = 12
+         }
+         let calendar = createCalendar(area.weekdays, new Date(year, month - 1))
 
          resolve({ name: area.name, calendar: calendar, bins: parsed_data.bins })
       })

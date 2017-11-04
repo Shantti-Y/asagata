@@ -27,6 +27,7 @@
       },
       data: function(){
          return {
+            // TODO: 6週目の追加
             calendar:   new Array([], [], [], [], []),
             current:    new Array(2),
             active:     new Array(2)
@@ -74,6 +75,7 @@
          for(var i = 0; i < dates; i++){
             calendar_cells[j] = this.insertDays(i)
             if(i + 1 == current_day){
+               // TODO: currentが存在しないときの代入処理
                this.current[1] = j
             }
             j += 1
