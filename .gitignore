@@ -1,4 +1,4 @@
 /node_modules
 /.sass-cache
 /.env
-/public/src/jsons/bin_calendars/**/**/**.xls
+/public
