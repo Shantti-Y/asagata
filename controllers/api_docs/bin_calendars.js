@@ -72,16 +72,15 @@ const createCalendar = (weekdays, init_date) => {
          let current_day = (i + first_day) % 7
          if(current_day == j && bin_days[j].length > 0){
             // Looped by linear list (like moving veritcally)
-
             for(let k = 0; k < bin_days[j].length; k++){
                let bin_data = bin_days[j][k]
                let week
                if(month == 0){
-                   week = Math.ceil((i - 2) / 7)
+                   week = Math.floor((i - 2) / 7) + 1
                }else{
-                   week = Math.ceil(i / 7)
+                   week = Math.floor(i / 7) + 1
                }
-               if( week == bin_data.freq || bin_data.freq == 0){
+               if(week == bin_data.freq || bin_data.freq == 0){
                   bins.push(bin_data.bin)
                }
             }
@@ -100,7 +99,7 @@ const getBinCalendars = () => {
       fs.readFile('./models/fixtures/jsons/bin_calendars/滋賀県/草津市/草津市.json', 'utf-8', (err, data) => {
          let parsed_data = JSON.parse(data)
          let area = linearSearch(parsed_data.areas, '西渋川')
-         let calendar = createCalendar(area.weekdays, new Date(new Date().setMonth(0)))
+         let calendar = createCalendar(area.weekdays, new Date(new Date().setMonth(10)))
 
          resolve({ name: area.name, calendar: calendar, bins: parsed_data.bins })
       })
