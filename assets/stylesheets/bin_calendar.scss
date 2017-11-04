@@ -34,7 +34,7 @@ div#bin-calendar {
       p#right { border-left: 1px solid #dedede; }
 
       div#fullyear {
-         width: 62px;
+         width: 67px;
          ul {
             padding: 5px;
             li.year {
@@ -48,7 +48,7 @@ div#bin-calendar {
       }
       div#bin-types {
          border-left: 1px solid #dedede;
-         width: 100px;
+         width: 95px;
          ul {
             padding: 6px;
             li {
@@ -85,10 +85,9 @@ div#bin-calendar {
                .day { float: left; }
                .symbol { float: right; }
             }
-
-            .current { background-color: #b3e6ff; }
-            .active { background-color: #ffcc99; }
          }
+         .current { background-color: #b3e6ff; }
+         .active { background-color: #ffcc99; }
       }
    }
    div#description {
