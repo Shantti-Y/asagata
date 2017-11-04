@@ -149,7 +149,7 @@ div#bin-calendar {
     div#bin-calendar div#overall p#right {
       border-left: 1px solid #dedede; }
     div#bin-calendar div#overall div#fullyear {
-      width: 62px; }
+      width: 67px; }
       div#bin-calendar div#overall div#fullyear ul {
         padding: 5px; }
         div#bin-calendar div#overall div#fullyear ul li.year {
@@ -159,7 +159,7 @@ div#bin-calendar {
           font-size: 12px; }
     div#bin-calendar div#overall div#bin-types {
       border-left: 1px solid #dedede;
-      width: 100px; }
+      width: 95px; }
       div#bin-calendar div#overall div#bin-types ul {
         padding: 6px; }
         div#bin-calendar div#overall div#bin-types ul li {
@@ -187,9 +187,9 @@ div#bin-calendar {
         float: left; }
       div#bin-calendar div#calendar table td div .symbol {
         float: right; }
-    div#bin-calendar div#calendar table td .current {
+    div#bin-calendar div#calendar table .current {
       background-color: #b3e6ff; }
-    div#bin-calendar div#calendar table td .active {
+    div#bin-calendar div#calendar table .active {
       background-color: #ffcc99; }
   div#bin-calendar div#description ul {
     width: 230px;

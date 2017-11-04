@@ -15,21 +15,21 @@ var _bin_calendars = require('./bin_calendars.js');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-document.addEventListener('DOMContentLoaded', function () {
-   var setAPIData = function setAPIData(path) {
-      var xhr_url = _api_urls.MainURL + path;
-      (0, _promise.getAPIData)(xhr_url).then(function (data) {
-         var parsed_data = JSON.parse(data);
-         if (path == 'weather') {
-            (0, _weather_reports.createWeatherTable)(parsed_data);
-         } else if (path == 'garbage') {
-            (0, _bin_calendars.createBinTable)(parsed_data);
-         }
-      }).catch(function (msg) {
-         console.log(msg);
-      });
-   };
+var setAPIData = function setAPIData(path) {
+   var xhr_url = _api_urls.MainURL + path;
+   (0, _promise.getAPIData)(xhr_url).then(function (data) {
+      var parsed_data = JSON.parse(data);
+      if (path == 'weather') {
+         (0, _weather_reports.createWeatherTable)(parsed_data);
+      } else if (path == 'garbage') {
+         (0, _bin_calendars.createBinTable)(parsed_data);
+      }
+   }).catch(function (msg) {
+      console.log(msg);
+   });
+};
 
+document.addEventListener('DOMContentLoaded', function () {
    var paths = ['weather', 'garbage'];
    var menu_btns = document.getElementsByClassName('menu-btn');
 
@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
       _loop(i);
    }
 });
+
+module.exports = { setAPIData: setAPIData };
 
 },{"../../config/api_urls.js":4,"../../helpers/promise.js":6,"./bin_calendars.js":2,"./weather_reports.js":3,"vue":46}],2:[function(require,module,exports){
 'use strict';
@@ -16463,23 +16465,89 @@ function extend() {
 
 },{}],49:[function(require,module,exports){
 ;(function(){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
    value: true
 });
 exports.default = {
    props: {
-      values: Object,
-      calendar: Array
+      bindates: Object
+   },
+   data: function data() {
+      return {
+         calendar: new Array([], [], [], [], []),
+         current: new Array(2),
+         active: new Array(2)
+      };
+   },
+   methods: {
+      emptyDay: function emptyDay() {
+         return { day: 'empty' };
+      },
+      insertDays: function insertDays(d) {
+         if (this.bindates.days[d][0] == undefined) {
+            return { day: d + 1, bins: 'no bin' };
+         } else {
+            return { day: d + 1, bins: this.bindates.days[d] };
+         }
+      },
+      isSpecial: function isSpecial(week, day) {
+         if (week == this.active[0] && day == this.active[1]) {
+            return 'active';
+         } else if (week == this.current[0] && day == this.current[1]) {
+            return 'current';
+         } else {
+            return '';
+         }
+      },
+      selectActiveBindata: function selectActiveBindata(key, idx) {
+         this.active = [key, idx];
+         this.$emit('select-date', this.calendar[key][idx]);
+      }
+   },
+   created: function created() {
+      var calendar_cells = new Array(35);
+
+      var year = this.bindates.year;
+      var month = this.bindates.month - 1;
+      var dates = this.bindates.days.length;
+
+      calendar_cells.fill(this.emptyDay());
+
+      var current_month = new Date().getMonth() + 1;
+      var current_day = new Date().getDate();
+
+      var first_day = new Date(year, month, 1).getDay();
+      var j = first_day;
+      for (var i = 0; i < dates; i++) {
+         calendar_cells[j] = this.insertDays(i);
+         if (i + 1 == current_day) {
+            this.current[1] = j;
+         }
+         j += 1;
+      }
+
+      if (month + 1 == current_month) {
+         this.current = [Math.floor(this.current[1] / 7), this.current[1] % 7];
+         this.active = [this.current[0], this.current[1]];
+      }
+
+      for (var i = 0; i < this.calendar.length; i++) {
+         var first_idx = 0 + 7 * i;
+         var last_idx = first_idx + 7;
+         this.calendar[i] = calendar_cells.slice(first_idx, last_idx);
+      }
+
+      this.selectActiveBindata(this.active[0], this.active[1]);
    }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"calendar"}},[_c('div',{staticClass:"current"},[_c('span',[_vm._v(_vm._s(_vm.values.calendar.year)+"年"+_vm._s(_vm.values.calendar.month)+"月")])]),_vm._v(" "),_c('table',[_vm._m(0),_vm._v(" "),_c('tbody',_vm._l((_vm.calendar),function(week,key){return _c('tr',_vm._l((week),function(date,idx){return _c('td',[(date.day != 'empty')?_c('div',{staticClass:"day"},[_c('span',[_vm._v("\n                     "+_vm._s(date.day)+"\n                  ")]),_vm._v(" "),(date.bin != 'no bin')?_c('span',{class:'symbol ' + date.bin.color},[_vm._v("\n                     ●\n                  ")]):_vm._e()]):_vm._e()])}))}))])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',[_c('tr',[_c('th',[_vm._v("日")]),_vm._v(" "),_c('th',[_vm._v("月")]),_vm._v(" "),_c('th',[_vm._v("火")]),_vm._v(" "),_c('th',[_vm._v("水")]),_vm._v(" "),_c('th',[_vm._v("木")]),_vm._v(" "),_c('th',[_vm._v("金")]),_vm._v(" "),_c('th',[_vm._v("土")])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"calendar"}},[_c('div',{staticClass:"current"},[_c('span',[_vm._v(_vm._s(_vm.bindates.year)+"年"+_vm._s(_vm.bindates.month)+"月")])]),_vm._v(" "),_c('table',[_vm._m(0),_vm._v(" "),_c('tbody',_vm._l((_vm.calendar),function(week,key){return _c('tr',_vm._l((week),function(date,idx){return _c('td',{class:_vm.isSpecial(key, idx)},[(date.day != 'empty')?_c('div',{staticClass:"day",on:{"click":function($event){_vm.selectActiveBindata(key, idx)}}},[_c('span',[_vm._v(_vm._s(date.day))]),_vm._v(" "),(date.bins != 'no bin')?_c('span',{class:'symbol ' + date.bins[0].color},[_vm._v("●")]):_vm._e()]):_vm._e()])}))}))])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('thead',[_c('tr',[_c('th',[_vm._v("日")]),_c('th',[_vm._v("月")]),_c('th',[_vm._v("火")]),_c('th',[_vm._v("水")]),_c('th',[_vm._v("木")]),_c('th',[_vm._v("金")]),_c('th',[_vm._v("土")])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -16544,58 +16612,35 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
    props: ['values'],
-   data: function data() {
-      return {
-         calendar: new Array([], [], [], [], [])
-      };
-   },
-   methods: {
-      emptyDay: function emptyDay() {
-         return { day: 'empty' };
-      },
-      insertDays: function insertDays(d) {
-         if (this.values.calendar.days[d][0] == undefined) {
-            return { day: d + 1, bin: 'no bin' };
-         } else {
-            return { day: d + 1, bin: this.values.calendar.days[d][0] };
-         }
-      }
-   },
-   created: function created() {
-      var calendar_cells = new Array(35);
-
-      var year = this.values.calendar.year;
-      var month = this.values.calendar.month - 1;
-      var dates = this.values.calendar.days.length;
-
-      calendar_cells.fill(this.emptyDay());
-
-      var first_day = new Date(year, month, 1).getDay();
-      var last_day = new Date(year, month, dates);
-
-      var j = first_day;
-      for (var i = 0; i < dates; i++) {
-         calendar_cells[j] = this.insertDays(j);
-         j += 1;
-      }
-
-      for (var i = 0; i < this.calendar.length; i++) {
-         var first_idx = 0 + 7 * i;
-         var last_idx = first_idx + 7;
-         this.calendar[i] = calendar_cells.slice(first_idx, last_idx);
-      }
-   },
    components: {
       'overall': _overall2.default,
       'calendar': _calendar2.default,
       'descriptions': _descriptions2.default
+   },
+   data: function data() {
+      return {
+         selected_date: this.setSelectedDate(1, 'no bin') };
+   },
+   methods: {
+      setSelectedDate: function setSelectedDate(day, bins) {
+         return {
+            year: this.values.calendar.year,
+            month: this.values.calendar.month,
+            day: day,
+            bins: bins
+         };
+      },
+
+      showActiveBindata: function showActiveBindata(date) {
+         this.selected_date = this.setSelectedDate(date.day, date.bins);
+      }
    }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"bin-calendar"}},[_c('overall'),_vm._v(" "),_c('calendar',{attrs:{"values":_vm.values,"calendar":_vm.calendar}}),_vm._v(" "),_c('descriptions',{attrs:{"bins":_vm.values.bins}})],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"main"}},[_c('div',{attrs:{"id":"bin-calendar"}},[_c('overall',{attrs:{"selected_date":_vm.selected_date}}),_vm._v(" "),_c('calendar',{attrs:{"bindates":_vm.values.calendar},on:{"select-date":_vm.showActiveBindata}}),_vm._v(" "),_c('descriptions',{attrs:{"bins":_vm.values.bins}})],1)])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -16609,13 +16654,27 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 })()}
 },{"./calendar.vue":49,"./descriptions.vue":50,"./overall.vue":52,"vue":46,"vue-hot-reload-api":45}],52:[function(require,module,exports){
 ;(function(){
-"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+   value: true
+});
+exports.default = {
+   props: {
+      selected_date: Object
+   },
+   data: function data() {
+      return {
+         setAPIData: require('../../assets/javascripts/app.js').setAPIData
+      };
+   }
+};
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"overall"}},[_c('p',{staticClass:"pager",attrs:{"id":"left"}},[_c('i',{staticClass:"fa fa-angle-double-left"})]),_vm._v(" "),_c('div',{attrs:{"id":"fullyear"}},[_c('ul',[_c('li',{staticClass:"year"},[_vm._v("2017年")]),_vm._v(" "),_c('li',{staticClass:"month-date"},[_vm._v("11月8日")])])]),_vm._v(" "),_c('div',{attrs:{"id":"bin-types"}},[_c('ul',[_c('li',[_vm._v("焼却ゴミ類")])])]),_vm._v(" "),_c('p',{staticClass:"pager",attrs:{"id":"right"}},[_c('i',{staticClass:"fa fa-angle-double-right"})])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"overall"}},[_c('p',{staticClass:"pager",attrs:{"id":"left"},on:{"click":function($event){_vm.setAPIData('garbage')}}},[_c('i',{staticClass:"fa fa-angle-double-left"})]),_vm._v(" "),_c('div',{attrs:{"id":"fullyear"}},[_c('ul',[_c('li',{staticClass:"year"},[_vm._v(_vm._s(_vm.selected_date.year)+"年")]),_vm._v(" "),_c('li',{staticClass:"month-date"},[_vm._v(_vm._s(_vm.selected_date.month)+"月"+_vm._s(_vm.selected_date.day)+"日")])])]),_vm._v(" "),_c('div',{attrs:{"id":"bin-types"}},[(_vm.selected_date.bins != 'no bin')?_c('ul',[_c('li',[_vm._v(_vm._s(_vm.selected_date.bins[0].type))])]):_vm._e()]),_vm._v(" "),_c('p',{staticClass:"pager",attrs:{"id":"right"},on:{"click":function($event){_vm.setAPIData('garbage')}}},[_c('i',{staticClass:"fa fa-angle-double-right"})])])}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -16626,4 +16685,4 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.rerender("data-v-247bcbc4", __vue__options__)
   }
 })()}
-},{"vue":46,"vue-hot-reload-api":45}]},{},[1]);
+},{"../../assets/javascripts/app.js":1,"vue":46,"vue-hot-reload-api":45}]},{},[1]);
