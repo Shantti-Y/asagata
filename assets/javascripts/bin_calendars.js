@@ -27,7 +27,7 @@ const createBinTable = (data) => {
       }
    */
 
-   let bins = new Vue({
+   let bin_calendars = new Vue({
       el: '#main',
       render(h){
          return h(binCalendar, { props: { values: data } })

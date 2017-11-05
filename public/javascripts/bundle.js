@@ -19,7 +19,7 @@ var setAPIData = function setAPIData(path) {
    var xhr_url = _api_urls.MainURL + path;
    (0, _promise.getAPIData)(xhr_url).then(function (data) {
       var parsed_data = JSON.parse(data);
-      if (path == 'weather') {
+      if (/weather.+/.test(path)) {
          (0, _weather_reports.createWeatherTable)(parsed_data);
       } else if (/garbage.+/.test(path)) {
          (0, _bin_calendars.createBinTable)(parsed_data);
@@ -88,7 +88,7 @@ var createBinTable = function createBinTable(data) {
       }
    */
 
-   var bins = new _vue2.default({
+   var bin_calendars = new _vue2.default({
       el: '#main',
       render: function render(h) {
          return h(_main2.default, { props: { values: data } });
@@ -102,6 +102,16 @@ module.exports = { createBinTable: createBinTable };
 'use strict';
 
 var _create_component = require('../../helpers/create_component.js');
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _main = require('../../views/weather_reports/main.vue');
+
+var _main2 = _interopRequireDefault(_main);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var createWeatherTable = function createWeatherTable(data) {
    /*
@@ -183,15 +193,17 @@ var createWeatherTable = function createWeatherTable(data) {
       }
    */
 
-   (0, _create_component.displayContent)('weather', function (weather_content) {
-      console.log(data);
-      weather_content.querySelector('p').innerHTML = data;
+   var weather_reports = new _vue2.default({
+      el: '#main',
+      render: function render(h) {
+         return h(_main2.default);
+      }
    });
 };
 
 module.exports = { createWeatherTable: createWeatherTable };
 
-},{"../../helpers/create_component.js":5}],4:[function(require,module,exports){
+},{"../../helpers/create_component.js":5,"../../views/weather_reports/main.vue":53,"vue":46}],4:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -16495,13 +16507,15 @@ exports.default = {
          }
       },
       isSpecial: function isSpecial(week, day) {
+         var class_name = '';
          if (week == this.active[0] && day == this.active[1]) {
-            return 'active';
+            class_name += 'active pointer';
          } else if (week == this.current[0] && day == this.current[1]) {
-            return 'current';
-         } else {
-            return '';
+            class_name += 'current pointer';
+         } else if (this.calendar[week][day].day != 'empty') {
+            class_name += 'pointer';
          }
+         return class_name;
       },
       selectActiveBindata: function selectActiveBindata(key, idx) {
          this.active = [key, idx];
@@ -16586,7 +16600,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-dfab99e0", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-dfab99e0", __vue__options__)
+    hotAPI.reload("data-v-dfab99e0", __vue__options__)
   }
 })()}
 },{"vue":46,"vue-hot-reload-api":45}],51:[function(require,module,exports){
@@ -16654,7 +16668,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-4c181cd2", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-4c181cd2", __vue__options__)
+    hotAPI.reload("data-v-4c181cd2", __vue__options__)
   }
 })()}
 },{"./calendar.vue":49,"./descriptions.vue":50,"./overall.vue":52,"vue":46,"vue-hot-reload-api":45}],52:[function(require,module,exports){
@@ -16687,7 +16701,38 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-247bcbc4", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-247bcbc4", __vue__options__)
+    hotAPI.reload("data-v-247bcbc4", __vue__options__)
   }
 })()}
-},{"../../assets/javascripts/app.js":1,"vue":46,"vue-hot-reload-api":45}]},{},[1]);
+},{"../../assets/javascripts/app.js":1,"vue":46,"vue-hot-reload-api":45}],53:[function(require,module,exports){
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = require('vue');
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"main"}},[_c('p',[_vm._v("hello")])])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-54ba063b", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-54ba063b", __vue__options__)
+  }
+})()}
+},{"vue":46,"vue-hot-reload-api":45}]},{},[1]);

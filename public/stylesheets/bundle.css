@@ -103,6 +103,8 @@ div#header {
         margin-right: 5px; }
       div#header ul#lower li:last-child {
         border-right: 1px solid #dedede; }
+      div#header ul#lower li:hover {
+        cursor: pointer; }
     div#header ul#lower li.active {
       padding: 6px 10px;
       border: 1px solid orange; }
@@ -144,6 +146,9 @@ div#bin-calendar {
       padding: 0 7px; }
       div#bin-calendar div#overall p.pager i {
         padding-top: 16px; }
+      div#bin-calendar div#overall p.pager:hover {
+        background-color: #dedede;
+        cursor: pointer; }
     div#bin-calendar div#overall p#left {
       border-right: 1px solid #dedede; }
     div#bin-calendar div#overall p#right {
@@ -190,6 +195,11 @@ div#bin-calendar {
     div#bin-calendar div#calendar table .current {
       background-color: #b3e6ff; }
     div#bin-calendar div#calendar table .active {
+      background-color: #ffcc99; }
+    div#bin-calendar div#calendar table .pointer:hover {
+      background-color: #ffcc99;
+      cursor: pointer; }
+    div#bin-calendar div#calendar table .pointer:active {
       background-color: #ffcc99; }
   div#bin-calendar div#description ul {
     width: 230px;

@@ -29,7 +29,6 @@ const createCalendar = (weekdays, init_date) => {
    let year = init_date.getFullYear()
    let month = init_date.getMonth()
    let days = new Array()
-   console.log(init_date)
    /*
       JSON structure could be like this.
       {

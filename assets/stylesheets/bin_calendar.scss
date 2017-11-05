@@ -29,6 +29,10 @@ div#bin-calendar {
       p.pager {
          padding: 0 7px;
          i { padding-top: 16px; }
+         &:hover {
+            background-color: #dedede;
+            cursor: pointer;
+         }
       }
       p#left { border-right: 1px solid #dedede; }
       p#right { border-left: 1px solid #dedede; }
@@ -88,6 +92,13 @@ div#bin-calendar {
          }
          .current { background-color: #b3e6ff; }
          .active { background-color: #ffcc99; }
+         .pointer {
+            &:hover {
+               background-color: #ffcc99;
+               cursor: pointer;
+            }
+            &:active { background-color: #ffcc99; }
+         }
       }
    }
    div#description {

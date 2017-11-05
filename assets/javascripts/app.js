@@ -9,7 +9,7 @@ const setAPIData = (path) => {
    const xhr_url = MainURL + path
    getAPIData(xhr_url).then((data) => {
       let parsed_data = JSON.parse(data)
-         if(path == 'weather'){
+         if(/weather.+/.test(path)){
             createWeatherTable(parsed_data)
          }else if(/garbage.+/.test(path)){
             createBinTable(parsed_data)

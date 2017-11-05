@@ -1,5 +1,8 @@
 import { displayContent } from '../../helpers/create_component.js'
 
+import Vue from 'vue'
+import weatherReport from '../../views/weather_reports/main.vue'
+
 const createWeatherTable = (data) => {
    /*
       The data delivered is like this
@@ -81,10 +84,12 @@ const createWeatherTable = (data) => {
       }
    */
 
-   displayContent('weather', (weather_content) => {
-      console.log(data)
-      weather_content.querySelector('p').innerHTML = data
-      })
+   let weather_reports = new Vue({
+      el: '#main',
+      render(h){
+         return h(weatherReport)
+      }
+   })
 }
 
 module.exports = { createWeatherTable }

@@ -27,7 +27,6 @@
       },
       data: function(){
          return {
-            // TODO: 6週目の追加
             calendar:   new Array([], [], [], [], [], []),
             current:    new Array(2),
             active:     new Array(2)
@@ -45,13 +44,15 @@
             }
          },
          isSpecial: function(week, day){
+            var class_name = ''
             if(week == this.active[0] && day == this.active[1]){
-               return 'active'
+               class_name += 'active pointer'
             }else if(week == this.current[0] && day == this.current[1]){
-               return 'current'
-            }else{
-               return ''
+               class_name += 'current pointer'
+            }else if(this.calendar[week][day].day != 'empty'){
+               class_name += 'pointer'
             }
+            return class_name
          },
          selectActiveBindata: function(key, idx){
             this.active = [key, idx]
