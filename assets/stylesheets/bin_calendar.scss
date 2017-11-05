@@ -59,7 +59,7 @@ div#bin-calendar {
    }
 
    div#calendar {
-      height: calc(300px - 66px - 56px);
+      min-height: calc(300px - 66px - 56px);
 
       div.current {
          font-size: 13px;

@@ -28,7 +28,7 @@
       data: function(){
          return {
             // TODO: 6週目の追加
-            calendar:   new Array([], [], [], [], []),
+            calendar:   new Array([], [], [], [], [], []),
             current:    new Array(2),
             active:     new Array(2)
          }
@@ -59,23 +59,23 @@
          }
       },
       created: function() {
-         var calendar_cells = new Array(35)
-
          var year = this.bindates.year
          var month = this.bindates.month - 1
          var dates = this.bindates.days.length
-
-         calendar_cells.fill(this.emptyDay())
 
          var current_month = new Date().getMonth() + 1
          var current_day = new Date().getDate()
 
          var first_day = new Date(year, month, 1).getDay()
+
+         var cells = dates + first_day <= 35 ? 35 : 42
+         var calendar_cells = new Array(cells)
+         calendar_cells.fill(this.emptyDay())
+
          var j = first_day
          for(var i = 0; i < dates; i++){
             calendar_cells[j] = this.insertDays(i)
             if(i + 1 == current_day){
-               // TODO: currentが存在しないときの代入処理
                this.current[1] = j
             }
             j += 1
@@ -84,6 +84,9 @@
          if(month + 1 == current_month){
             this.current = [Math.floor(this.current[1] / 7), this.current[1] % 7]
             this.active = [this.current[0], this.current[1]]
+         }else{
+            this.current = [],
+            this.active = [0, first_day]
          }
 
          for(var i = 0; i < this.calendar.length; i++){

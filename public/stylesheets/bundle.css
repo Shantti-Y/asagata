@@ -48,7 +48,7 @@ table {
 
 body {
   width: 230px;
-  height: 330px;
+  height: 360px;
   border: 1px solid #000000;
   /* scroll-bar */ }
   body * {
@@ -165,7 +165,7 @@ div#bin-calendar {
         div#bin-calendar div#overall div#bin-types ul li {
           font-size: 11px; }
   div#bin-calendar div#calendar {
-    height: calc(300px - 66px - 56px); }
+    min-height: calc(300px - 66px - 56px); }
     div#bin-calendar div#calendar div.current {
       font-size: 13px;
       text-align: center;

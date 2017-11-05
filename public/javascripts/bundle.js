@@ -16478,7 +16478,7 @@ exports.default = {
    },
    data: function data() {
       return {
-         calendar: new Array([], [], [], [], []),
+         calendar: new Array([], [], [], [], [], []),
          current: new Array(2),
          active: new Array(2)
       };
@@ -16509,18 +16509,19 @@ exports.default = {
       }
    },
    created: function created() {
-      var calendar_cells = new Array(35);
-
       var year = this.bindates.year;
       var month = this.bindates.month - 1;
       var dates = this.bindates.days.length;
-
-      calendar_cells.fill(this.emptyDay());
 
       var current_month = new Date().getMonth() + 1;
       var current_day = new Date().getDate();
 
       var first_day = new Date(year, month, 1).getDay();
+
+      var cells = dates + first_day <= 35 ? 35 : 42;
+      var calendar_cells = new Array(cells);
+      calendar_cells.fill(this.emptyDay());
+
       var j = first_day;
       for (var i = 0; i < dates; i++) {
          calendar_cells[j] = this.insertDays(i);
@@ -16533,6 +16534,8 @@ exports.default = {
       if (month + 1 == current_month) {
          this.current = [Math.floor(this.current[1] / 7), this.current[1] % 7];
          this.active = [this.current[0], this.current[1]];
+      } else {
+         this.current = [], this.active = [0, first_day];
       }
 
       for (var i = 0; i < this.calendar.length; i++) {
@@ -16557,7 +16560,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-e2f54152", __vue__options__)
   } else {
-    hotAPI.rerender("data-v-e2f54152", __vue__options__)
+    hotAPI.reload("data-v-e2f54152", __vue__options__)
   }
 })()}
 },{"vue":46,"vue-hot-reload-api":45}],50:[function(require,module,exports){
