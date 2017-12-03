@@ -1,5 +1,3 @@
-import { displayContent } from '../../helpers/create_component.js'
-
 import Vue from 'vue'
 import weatherReport from '../../views/weather_reports/main.vue'
 

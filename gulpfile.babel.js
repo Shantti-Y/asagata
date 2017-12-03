@@ -11,19 +11,7 @@ const js_assets = './assets/javascripts/'
 const css_assets = './assets/stylesheets/'
 const vue_assets = './views/'
 const node_server = './controllers/'
-
-// TODO: nodemonを使い、自動化を検討
-// let node
 gulp.task('server', () => {
-   /* if(node){
-      node.kill()
-   }
-   node = spawn('babel-node', ['./controllers/route.js'], { presets: 'es2015', stdio: 'inherit' })
-   node.on('close', (code) => {
-      if(code === 8){
-         gulp.log('Error detected, waiting for changes')
-      }
-   }) */
 })
 
 gulp.task('scripts', () => {

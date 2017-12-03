@@ -1,5 +1,3 @@
-import { displayContent } from '../../helpers/create_component.js'
-
 import Vue from 'vue'
 import binCalendar from '../../views/bin_calendars/main.vue'
 
