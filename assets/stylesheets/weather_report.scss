@@ -1,0 +1,133 @@
+div#weather-report {
+   div#overall {
+      height: 75px;
+      padding: 6px 6px 0 6px;
+      overflow: hidden;
+      border-bottom: 1px solid #dedede;
+
+      div#condition {
+         float: left;
+         text-align: center;
+         width: 65px;
+
+         p {
+            font-size: 13px;
+            margin: 4px 0;
+         }
+
+         img {
+            width: 43px;
+            height: 43px;
+            background-color: #f5f5f5;
+            border: 1px solid #909090;
+            border-radius: 3px;
+         }
+      }
+
+      div#contents {
+         float: right;
+         text-align: left;
+         width: 150px;
+
+         div#temp {
+            margin: 7px 0 9px 0;
+            * { display: inline-block; }
+            p {
+               font-size: 16px;
+               margin-right: 5px;
+               &:last-child { margin-right: 0; }
+            }
+            ul {
+               li {
+                  font-size: 14px;
+                  &:first-child {
+                     padding-right: 7px;
+                     border-right: 1px solid #909090;
+                  }
+                  &:last-child { padding-left: 7px; }
+               }
+               li.active { font-weight: bold; }
+            }
+         }
+
+         ul#others {
+            li {
+               margin: 5px 0;;
+               font-size: 12px;
+            }
+         }
+      }
+   }
+
+   div#chart {
+      height: 87px;
+      width: 228px;
+      margin: 0 1px;
+      overflow-x: auto;
+      white-space: nowrap;
+      > div {
+         position: relative;
+         margin: auto;
+         width: 500px;
+         height: 70px;
+         border-bottom: 1px solid #dedede;
+      }
+   }
+
+   div#modes {
+      height: 30px;
+      ul {
+         margin: 0 12px 6px 12px;
+         li {
+            background-color: #eceeee;
+            border: 1px solid #dedede;
+            display: inline-block;
+            font-size: 12px;
+            padding: 6px 7px;
+         }
+
+         li.active {
+            border: 1px solid orange;
+         }
+      }
+   }
+
+   div#weathers {
+      height: 97px;
+      margin: 0 1px;
+      ul {
+         width: 228px;
+         overflow-x: auto;
+         white-space: nowrap;
+         li {
+            margin: 0;
+            border-left: 1px solid #dedede;
+            border-right: 1px solid #dedede;
+            padding: 5px;
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+
+            p {
+               font-size: 11px;
+               margin-bottom: 2px;
+            }
+            p.temp {
+               font-size: 9px;
+               text-align: left;
+               margin-top: 6px;
+            }
+            img {
+               background-color: #f5f5f5;
+               border: 1px solid #909090;
+               border-radius: 3px;
+               width: 33px;
+               height: 33px;
+            }
+         }
+         li.active {
+            border: 1px solid orange;
+         }
+      }
+   }
+}
