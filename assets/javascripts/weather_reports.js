@@ -83,11 +83,44 @@ const createWeatherTable = (data) => {
          ]
       }
    */
+   let terms = new Array()
+   for(let i = 0; i < data.list.length; i++){
+      let date = data.list[i].dt_txt
+      let date_int = data.list[i].dt * 1000
+      let weather = data.list[i].weather[0]
+      let temp = {
+         temp:       data.list[i].main.temp,
+         max_temp:   data.list[i].main.temp_max,
+         min_temp:   data.list[i].main.temp_min
+      }
+      let rain = {
+         precipitation: data.list[i].rain,
+         humidity:      data.list[i].main.humidity
+      }
+      let wind = {
+         speed:   data.list[i].wind.speed,
+         deg:     data.list[i].wind.deg
+      }
 
+      let term_data = {
+         date:       date,
+         date_int:   date_int,
+         weather:    weather,
+         temp:       temp,
+         rain:       rain,
+         wind:       wind
+      }
+      terms.push(term_data)
+   }
+   // Create props to make itslef easy to be referred with value
+   let vue_values = {
+      area_name: data.city.name,
+      terms:     terms
+   }
    let weather_reports = new Vue({
       el: '#main',
       render(h){
-         return h(weatherReport)
+         return h(weatherReport, { props: { values: vue_values } })
       }
    })
 }

@@ -1,3 +1,4 @@
+// TODO: delete this file in master branch
 const displayContent = (path_name, callback) => {
    let contents = document.getElementsByClassName('content')
    let the_content = document.getElementById(path_name)

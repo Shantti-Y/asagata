@@ -33,7 +33,7 @@
          }
       },
       methods: {
-         setSelectedDate(day, bins){
+         setSelectedDate: function(day, bins){
             return {
                year:  this.values.calendar.year,
                month: this.values.calendar.month,
